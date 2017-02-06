@@ -14,7 +14,6 @@ and open the template in the editor.
         $a = true;
         if ($a === true)
         {
-            echo "toot";
             echo "noot";
         }
         ?>
