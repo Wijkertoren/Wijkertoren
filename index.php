@@ -15,6 +15,7 @@ and open the template in the editor.
         if ($a === true)
         {
             echo "noot";
+            echo "woop woop";
         }
         ?>
     </body>
