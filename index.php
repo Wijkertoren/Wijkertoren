@@ -16,6 +16,7 @@ and open the template in the editor.
         {
             echo "noot";
             echo "woop woop";
+            //Hoi Jorrit test
         }
         ?>
     </body>
