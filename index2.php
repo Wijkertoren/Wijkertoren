@@ -17,7 +17,7 @@ and open the template in the editor.
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
         
-        #our code goes hereeeee
+        #our code goes hereeee
 
         #this is a test Branch how it works when you try merging it to the master branch.       
     </body>
