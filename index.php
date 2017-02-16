@@ -6,8 +6,9 @@ and open the template in the editor.
 -->
 <html>
     <head>
+        <title>Wijkertoren Ledenregister</title>
         <meta charset="UTF-8">
-        <title></title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
