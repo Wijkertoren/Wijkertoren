@@ -8,16 +8,15 @@ and open the template in the editor.
     <head>
         <meta charset="UTF-8">
         <title></title>
+        <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
-        <?php
-        $a = true;
-        if ($a === true)
-        {
-            //test
-            echo "noot <br>";
-            echo "woop woop";
-        }
-        ?>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="js/bootstrap.min.js"></script>
+        
+        #our code goes hereeeee
+
     </body>
 </html>
