@@ -19,6 +19,6 @@ and open the template in the editor.
         
         #our code goes hereeee
 
-        #this is a test Branch how it works when you try merging it to the master branch...       
+        #this is a test Branch how it works when you try merging it to the master branch.     
     </body>
 </html>
