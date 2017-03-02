@@ -12,7 +12,6 @@ and open the template in the editor.
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/database.css" rel="stylesheet" type="text/css">
         <link href="css/data-tables-min.css" rel="stylesheet" type="text/css">
-
     </head>
     <body>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -40,18 +39,20 @@ and open the template in the editor.
                             <thead>
                                 <tr>
                                     <!--Headers of the table-->
+                                    <th><input type="checkbox" name="checked" value="OFF" /> Checked All</th>
                                     <?php
-                                    $array_headers = array();
                                     $query = "SELECT * from ledenregister";
                                     if ($result = mysqli_query($con, $query)) {
                                         /* Get field information for all fields */
-                                        $i = 0;
                                         while ($finfo = mysqli_fetch_field($result)) {
-                                            printf("<th>%s</th>", $finfo->name);
-                                            $array_headers[$i] = $finfo->name;
-                                            $i++;
+                                            if ($finfo->name == "Persoon_nr") {
+                                                
+                                            } elseif ($finfo->name == "Organisatie_nr") {
+                                                
+                                            } else {
+                                                printf("<th>%s</th>", $finfo->name);
+                                            }
                                         }
-
                                         mysqli_free_result($result);
                                     }
                                     ?>
@@ -60,6 +61,8 @@ and open the template in the editor.
                             <!-- Repeat for all the roles -->
                             <tfoot>
                                 <tr>
+                                    <th><input type="checkbox" name="checked" value="OFF" />Checked All</th>
+
                                     <!-- All the different data in 1 row-->
                                     <?php
                                     $query = "SELECT * from ledenregister";
@@ -84,12 +87,15 @@ and open the template in the editor.
                                 while ($row = mysqli_fetch_assoc($result)) {
                                     $post[] = $row;
                                 }
+                                $checknr = 0;
                                 foreach ($post as $row) {
-                                    echo "<tr> ";
+                                    echo "<tr>";
+                                    echo'<th><input type="checkbox" name="Check' . $checknr . '" value="OFF" /></th>';
                                     foreach ($row as $element) {
-                                        echo "<td> " . $element . " </td>";
+                                        echo "<td>" . $element . "</td>";
                                     }
                                     echo " </tr>";
+                                    $checknr++;
                                 }
                                 mysqli_free_result($result);
                                 ?>
