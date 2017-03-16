@@ -213,6 +213,7 @@ and open the template in the editor.
                 </div>
             </div>
 
+            <!--Modal voor het Toevoegen van Leden.-->
             <div id="ModalAdd" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
@@ -222,9 +223,92 @@ and open the template in the editor.
                             <h4 class="modal-title">Lid Toevoegen</h4>
                         </div>
                         <div class="modal-body">
-                            <?php
-                            //hier database informatie ;)
-                            ?>
+                            <form class="form-horizontal">
+                                <div class="form-group">
+                                    <label for="Voornaam" class="col-sm-2 control-label">Voornaam</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="Voornaam" placeholder="Voornaam...">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Achternaam" class="col-sm-2 control-label">Achternaam</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="Achternaam" placeholder="Achternaam...">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Tussenvoegsel" class="col-sm-2 control-label">Tussenvoegsel</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="Tussenvoegsel" placeholder="Tussenvoegsel...">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Geslacht" class="col-sm-2 control-label">Geslacht</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="Geslacht" placeholder="Geslacht...">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Organisatie" class="col-sm-2 control-label">Organisatie</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="Organisatie" placeholder="Organisatie...">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ContactPersoon" class="col-sm-2 control-label">Contact Persoon</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="ContactPersoon" placeholder="Contact Persoon...">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Email" class="col-sm-2 control-label">Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="Email" placeholder="Email...">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ExtraEmail" class="col-sm-2 control-label">Extra Email</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="ExtraEmail" placeholder="Extra Email...">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Telefoon" class="col-sm-2 control-label">Telefoon</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="Telefoon" placeholder="Telefoon...">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Mobiel" class="col-sm-2 control-label">Mobiel</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="Mobiel" placeholder="Mobiel...">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Adres" class="col-sm-2 control-label">Adres</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="Adres" placeholder="Adres...">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Woonplaats" class="col-sm-2 control-label">Woonplaats</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="Woonplaats" placeholder="Woonplaats...">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="Postcode" class="col-sm-2 control-label">Postcode</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="Postcode" placeholder="Postcode...">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="ExtraInfo" class="col-sm-2 control-label">Extra Info</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="ExtraInfo" placeholder="ExtraInfo...">
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
