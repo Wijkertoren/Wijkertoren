@@ -9,7 +9,7 @@ and open the template in the editor.
         <title>Wijkertoren Ledenregister</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href="css/database.css" rel="stylesheet" type="text/css">
         <link href="css/data-tables-min.css" rel="stylesheet" type="text/css">
     </head>
@@ -172,7 +172,7 @@ and open the template in the editor.
             <button id="LidModal" name="LidModal" type="button" class="btn btn-info btn-lg"  data-toggle="modal" data-target="#ModalLid" disabled>Lid informatie</button>
             <button id="EmailModal" name ="EmailModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalEmail" disabled>Email Lid</button>
             <button id="VerwijderLidModal" name ="VerwijderLidModal" type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#DeleteMemberModal" disabled>Verwijder Lid</button>
-            <!-- Modal -->
+            <!-- Modal voor het informatie scherm van een Lid -->
             <div id="ModalLid" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
@@ -192,7 +192,7 @@ and open the template in the editor.
                     </div>
                 </div>
             </div>
-
+            <!-- Modal voor het versturen van de emails naar de leden -->
             <div id="ModalEmail" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
@@ -212,8 +212,7 @@ and open the template in the editor.
                     </div>
                 </div>
             </div>
-
-            <!--Modal voor het Toevoegen van Leden.-->
+            <!-- Modal voor het Toevoegen van Leden. -->
             <div id="ModalAdd" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
@@ -224,99 +223,100 @@ and open the template in the editor.
                         </div>
                         <div class="modal-body">
                             <form class="form-horizontal">
-                                <div class="form-group">
-                                    <label for="Voornaam" class="col-sm-2 control-label">Voornaam</label>
-                                    <div class="col-sm-10">
+                                <div class="form-group col-sm-6">
+                                    <label for="Voornaam" class="col-sm-4 control-label">Voornaam</label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="Voornaam" placeholder="Voornaam...">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="Achternaam" class="col-sm-2 control-label">Achternaam</label>
-                                    <div class="col-sm-10">
+                                <div class="form-group col-sm-6">
+                                    <label for="Achternaam" class="col-sm-4 control-label">Achternaam</label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="Achternaam" placeholder="Achternaam...">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="Tussenvoegsel" class="col-sm-2 control-label">Tussenvoegsel</label>
-                                    <div class="col-sm-10">
+                                <div class="form-group col-sm-6">
+                                    <label for="Tussenvoegsel" class="col-sm-4 control-label">Tussenvoegsel</label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="Tussenvoegsel" placeholder="Tussenvoegsel...">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="Geslacht" class="col-sm-2 control-label">Geslacht</label>
-                                    <div class="col-sm-10">
+                                <div class="form-group col-sm-6">
+                                    <label for="Geslacht" class="col-sm-4 control-label">Geslacht</label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="Geslacht" placeholder="Geslacht...">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="Organisatie" class="col-sm-2 control-label">Organisatie</label>
-                                    <div class="col-sm-10">
+                                <div class="form-group col-sm-6">
+                                    <label for="Organisatie" class="col-sm-4 control-label">Organisatie</label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="Organisatie" placeholder="Organisatie...">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="ContactPersoon" class="col-sm-2 control-label">Contact Persoon</label>
-                                    <div class="col-sm-10">
+                                <div class="form-group col-sm-6">
+                                    <label for="ContactPersoon" class="col-sm-4 control-label">Contact Persoon</label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="ContactPersoon" placeholder="Contact Persoon...">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="Email" class="col-sm-2 control-label">Email</label>
-                                    <div class="col-sm-10">
+                                <div class="form-group col-sm-6">
+                                    <label for="Email" class="col-sm-4 control-label">Email</label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="Email" placeholder="Email...">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="ExtraEmail" class="col-sm-2 control-label">Extra Email</label>
-                                    <div class="col-sm-10">
+                                <div class="form-group col-sm-6">
+                                    <label for="ExtraEmail" class="col-sm-4 control-label">Extra Email</label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="ExtraEmail" placeholder="Extra Email...">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="Telefoon" class="col-sm-2 control-label">Telefoon</label>
-                                    <div class="col-sm-10">
+                                <div class="form-group col-sm-6">
+                                    <label for="Telefoon" class="col-sm-4 control-label">Telefoon</label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="Telefoon" placeholder="Telefoon...">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="Mobiel" class="col-sm-2 control-label">Mobiel</label>
-                                    <div class="col-sm-10">
+                                <div class="form-group col-sm-6">
+                                    <label for="Mobiel" class="col-sm-4 control-label">Mobiel</label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="Mobiel" placeholder="Mobiel...">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="Adres" class="col-sm-2 control-label">Adres</label>
-                                    <div class="col-sm-10">
+                                <div class="form-group col-sm-6">
+                                    <label for="Adres" class="col-sm-4 control-label">Adres</label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="Adres" placeholder="Adres...">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="Woonplaats" class="col-sm-2 control-label">Woonplaats</label>
-                                    <div class="col-sm-10">
+                                <div class="form-group col-sm-6">
+                                    <label for="Woonplaats" class="col-sm-4 control-label">Woonplaats</label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="Woonplaats" placeholder="Woonplaats...">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="Postcode" class="col-sm-2 control-label">Postcode</label>
-                                    <div class="col-sm-10">
+                                <div class="form-group col-sm-6">
+                                    <label for="Postcode" class="col-sm-4 control-label">Postcode</label>
+                                    <div class="col-sm-8">
                                         <input type="text" class="form-control" id="Postcode" placeholder="Postcode...">
                                     </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="ExtraInfo" class="col-sm-2 control-label">Extra Info</label>
-                                    <div class="col-sm-10">
-                                        <input type="text" class="form-control" id="ExtraInfo" placeholder="ExtraInfo...">
+                                <div class="form-group col-sm-6">
+                                    <label for="ExtraInfo" class="col-sm-4 control-label">Extra Info</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="ExtraInfo" placeholder="Extra Info...">
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Toevoegen</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Annuleren</button>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <!-- Modal voor het verwijderen van Leden -->
             <div id="DeleteMemberModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
@@ -326,7 +326,12 @@ and open the template in the editor.
                             <h4 id="Verwijderleden" class="modal-title">Leden Verwijderen</h4>
                         </div>
                         <div class="modal-body">
-                            <p id="Verwijderen">Weet u zeker dat u dit lid wilt verwijderen?<p>
+                            <div class="col-sm-4">
+
+                            </div>
+                            <div class="col-sm-6">
+                                <label class="center-block control-label" id="Verwijderen">Weet u zeker dat u dit lid wilt verwijderen?</label>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Ja</button>
@@ -362,9 +367,9 @@ and open the template in the editor.
                     $("#Verwijderen").text("Weet u zeker dat u deze leden wilt verwijderen?");
                     $("#Verwijderleden").text("Leden Verwijderen");
                 }
-                $("#LidModal").attr("disabled", $('#example').find("tr.selected").length != 1);
-                $("#EmailModal").attr("disabled", $('#example').find("tr.selected").length == 0);
-                $("#VerwijderLidModal").attr("disabled", $('#example').find("tr.selected").length == 0);
+                $("#LidModal").attr("disabled", $('#example').find("tr.selected").length !== 1);
+                $("#EmailModal").attr("disabled", $('#example').find("tr.selected").length === 0);
+                $("#VerwijderLidModal").attr("disabled", $('#example').find("tr.selected").length === 0);
             });
 
             $('#button').click(function () {
