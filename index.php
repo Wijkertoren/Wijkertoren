@@ -9,7 +9,7 @@ and open the template in the editor.
         <title>Wijkertoren Ledenregister</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="css/database.css" rel="stylesheet" type="text/css">
         <link href="css/data-tables-min.css" rel="stylesheet" type="text/css">
     </head>
@@ -54,6 +54,8 @@ and open the template in the editor.
                                     <th>Woonplaats</th>
                                     <th>Postcode</th>
                                     <th>Tags</th>
+                                    <th>Donatie</th>
+                                    <th>Kenmerk</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -73,6 +75,8 @@ and open the template in the editor.
                                     <th>Woonplaats</th>
                                     <th>Postcode</th>
                                     <th>Tags</th>
+                                    <th>Donatie</th>
+                                    <th>Kenmerk</th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -85,9 +89,6 @@ and open the template in the editor.
                                         . "Adres, Woonplaats, Postcode, Extra_info "
                                         . "FROM ledenregister lid, organisaties org "
                                         . "WHERE lid.Organisatie_nr = org.Organisatie_nr";
-                                $querybetalingen = "SELECT Datum_donatie, Donatie_kenmerk "
-                                        ."FROM ledenregister lid, donaties d"
-                                        ."WHERE lid.Lid_nr = d.Lid_nr";
 
                                 if ($result = mysqli_query($con, $queryleden)) {
                                     while ($row = mysqli_fetch_array($result)) {
@@ -105,8 +106,22 @@ and open the template in the editor.
                                         . "<td>" . $row["Adres"] . "</td>"
                                         . "<td>" . $row["Woonplaats"] . "</td>"
                                         . "<td>" . $row["Postcode"] . "</td>"
-                                        . "<td>" . $row["Extra_info"] . "</td>"
-                                        . "</tr>";
+                                        . "<td>" . $row["Extra_info"] . "</td>";
+                                        //Donatie info voor deze rij.
+                                        // Voor zekerheid als de query niet werkt, komen er 2 lege cellen.
+                                        $querybetalingen = "SELECT Datum_donatie, Donatie_kenmerk "
+                                                . "FROM donaties "
+                                                . "WHERE Lid_nr = " . $row["Lid_nr"];
+                                        if ($resultDonatie = mysqli_query($con, $querybetalingen)) {
+                                            while ($row = mysqli_fetch_array($resultDonatie)) {
+                                                echo "<td>" . $row["Datum_donatie"] . "</td>"
+                                                . "<td>" . $row["Donatie_kenmerk"] . "</td>";
+                                            }
+                                        } else {
+                                            echo "<td> </td>"
+                                            . "<td> </td>";
+                                        }
+                                        echo "</tr>";
                                     }
                                 } else {
                                     
@@ -127,8 +142,21 @@ and open the template in the editor.
                                         . "<td>" . $row["Adres"] . "</td>"
                                         . "<td>" . $row["Woonplaats"] . "</td>"
                                         . "<td>" . $row["Postcode"] . "</td>"
-                                        . "<td>" . $row["Extra_info"] . "</td>"
-                                        . "</tr>";
+                                        . "<td>" . $row["Extra_info"] . "</td>";
+
+                                        $querybetalingen = "SELECT Datum_donatie, Donatie_kenmerk "
+                                                . "FROM donaties "
+                                                . "WHERE Lid_nr = " . $row["Lid_nr"];
+                                        if ($resultDonatie = mysqli_query($con, $querybetalingen)) {
+                                            while ($row = mysqli_fetch_array($resultDonatie)) {
+                                                echo "<td>" . $row["Datum_donatie"] . "</td>"
+                                                . "<td>" . $row["Donatie_kenmerk"] . "</td>";
+                                            }
+                                        } else {
+                                            echo "<td> </td>"
+                                            . "<td> </td>";
+                                        }
+                                        echo "</tr>";
                                     }
                                 } else {
                                     echo "There was a problem with the Database or Query";
@@ -136,25 +164,25 @@ and open the template in the editor.
                                 ?>
                             </tbody>
                         </table>
-                        <script>
-                            $(document).ready(function () {
-                                $('#example').DataTable({"scrollX": true});
-                                
-                                var table = $('#example').DataTable();
-
-                                $('#example tbody').on('click', 'tr', function () {
-                                    $(this).toggleClass('selected');
-                                });
-
-                                $('#button').click(function () {
-                                    alert(table.rows('.selected').data().length + ' row(s) selected');
-                                });
-                            });
-                        </script>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
+<script>
+    //
+    $(document).ready(function () {
+        var table = $('#example').DataTable();
+        //horizontal scrolling
+        $('#example').DataTable({"scrollX": true});
+        //click row function
+        $('#example tbody').on('click', 'tr', function () {
+            $(this).toggleClass('selected');
+        });
+        $('#button').click(function () {
+            alert(table.rows('.selected').data().length + ' row(s) selected');
+        });
+    });
+</script>
 </html>
