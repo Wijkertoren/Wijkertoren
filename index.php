@@ -348,6 +348,10 @@ and open the template in the editor.
             $('#example').DataTable({"scrollX": true});
             var table = $('#example').DataTable();
 
+            //Resets all the elements in the Modal to empty again.
+            $('.modal').on('hidden.bs.modal', function () {
+                $(this).find('form')[0].reset();
+            });
             //Function for selecting which buttons will be Activated and disabled.
             $('#example tbody').on('click', 'tr', function () {
                 if ($(this).hasClass('selected')) {
@@ -375,6 +379,7 @@ and open the template in the editor.
             $('#button').click(function () {
 
             });
-        });
+        }
+        );
     </script>
 </html>
