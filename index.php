@@ -9,7 +9,7 @@ and open the template in the editor.
         <title>Wijkertoren Ledenregister</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="css/database.css" rel="stylesheet" type="text/css">
         <link href="css/data-tables-min.css" rel="stylesheet" type="text/css">
     </head>
@@ -86,8 +86,11 @@ and open the template in the editor.
                                         . "FROM ledenregister lid, organisaties org "
                                         . "WHERE lid.Organisatie_nr = org.Organisatie_nr";
                                 $querybetalingen = "SELECT Datum_donatie, Donatie_kenmerk "
-                                        ."FROM ledenregister lid, donaties d"
-                                        ."WHERE lid.Lid_nr = d.Lid_nr";
+                                        . "FROM ledenregister lid, donaties d"
+                                        . "WHERE lid.Lid_nr = d.Lid_nr";
+                                //$queryselected = " AND lid.Lid_nr = ". $selectedLid; 
+
+
 
                                 if ($result = mysqli_query($con, $queryleden)) {
                                     while ($row = mysqli_fetch_array($result)) {
@@ -136,25 +139,126 @@ and open the template in the editor.
                                 ?>
                             </tbody>
                         </table>
-                        <script>
-                            $(document).ready(function () {
-                                $('#example').DataTable({"scrollX": true});
-                                
-                                var table = $('#example').DataTable();
 
-                                $('#example tbody').on('click', 'tr', function () {
-                                    $(this).toggleClass('selected');
-                                });
-
-                                $('#button').click(function () {
-                                    alert(table.rows('.selected').data().length + ' row(s) selected');
-                                });
-                            });
-                        </script>
+                    </div>
+                </div>
+            </div>
+            <!-- Trigger the modal with a button -->
+            <button id="LidModal" name="LidModal" type="button" class="btn btn-info btn-lg"  data-toggle="modal" data-target="#ModalLid" disabled>Lid informatie</button>
+            <button id="EmailModal" name ="EmailModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalEmail" disabled>Email Lid</button>
+            <button id="ToevoegenLidModal" name ="ToevoegenLidModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalAdd">Lid Toevoegen</button>
+            <button id="VerwijderLidModal" name ="VerwijderLidModal" type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#DeleteMemberModal" disabled>Verwijder Lid</button>
+            <!-- Modal -->
+            <div id="ModalLid" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Lid Informatie</h4>
+                        </div>
+                        <div class="modal-body">
+                            <?php
+                            //hier database informatie ;)
+                            ?>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="ModalEmail" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Email Leden</h4>
+                        </div>
+                        <div class="modal-body">
+                            <?php
+                            //hier database informatie ;)
+                            ?>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="ModalAdd" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 class="modal-title">Lid Toevoegen</h4>
+                        </div>
+                        <div class="modal-body">
+                            <?php
+                            //hier database informatie ;)
+                            ?>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="DeleteMemberModal" class="modal fade" role="dialog">
+                <div class="modal-dialog">
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h4 id="Verwijderleden" class="modal-title">Leden Verwijderen</h4>
+                        </div>
+                        <div class="modal-body">
+                            <p id="Verwijderen">Weet u zeker dat u dit lid wilt verwijderen?<p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Ja</button>
+                            <button type="button" class="btn btn-info" data-dismiss="modal">Nee</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
+    <script>
+        $(document).ready(function () {
+            var table = $('#example').DataTable();
+
+            $('#example tbody').on('click', 'tr', function () {
+                if ($(this).hasClass('selected')) {
+                    $(this).removeClass('selected');
+                } else {
+                    $(this).addClass('selected');
+                }
+                var count = $('#example').find("tr.selected").length;
+                if (count <= 1) {
+                    $("#EmailModal").text("Email Lid");
+                    $("#VerwijderLidModal").text("Verwijder Lid");
+                    $("#Verwijderen").text("Weet u zeker dat u dit lid wilt verwijderen?");
+                    $("#Verwijderleden").text("Lid Verwijderen");
+                } else {
+                   $("#EmailModal").text("Email Leden");
+                   $("#VerwijderLidModal").text("Verwijder Leden");
+                   $("#Verwijderen").text("Weet u zeker dat u deze leden wilt verwijderen?");
+                   $("#Verwijderleden").text("Leden Verwijderen");
+                }
+                $("#LidModal").attr("disabled", $('#example').find("tr.selected").length != 1);
+                $("#EmailModal").attr("disabled", $('#example').find("tr.selected").length == 0);
+                $("#VerwijderLidModal").attr("disabled", $('#example').find("tr.selected").length == 0);
+            });
+
+            $('#button').click(function () {
+
+            });
+        });
+    </script>
 </html>
