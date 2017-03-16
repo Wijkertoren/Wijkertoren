@@ -54,6 +54,8 @@ and open the template in the editor.
                                     <th>Woonplaats</th>
                                     <th>Postcode</th>
                                     <th>Tags</th>
+                                    <th>Donatie</th>
+                                    <th>Kenmerk</th>
                                 </tr>
                             </thead>
                             <tfoot>
@@ -73,6 +75,8 @@ and open the template in the editor.
                                     <th>Woonplaats</th>
                                     <th>Postcode</th>
                                     <th>Tags</th>
+                                    <th>Donatie</th>
+                                    <th>Kenmerk</th>
                                 </tr>
                             </tfoot>
                             <tbody>
@@ -108,8 +112,22 @@ and open the template in the editor.
                                         . "<td>" . $row["Adres"] . "</td>"
                                         . "<td>" . $row["Woonplaats"] . "</td>"
                                         . "<td>" . $row["Postcode"] . "</td>"
-                                        . "<td>" . $row["Extra_info"] . "</td>"
-                                        . "</tr>";
+                                        . "<td>" . $row["Extra_info"] . "</td>";
+                                        //Donatie info voor deze rij.
+                                        // Voor zekerheid als de query niet werkt, komen er 2 lege cellen.
+                                        $querybetalingen = "SELECT Datum_donatie, Donatie_kenmerk "
+                                                . "FROM donaties "
+                                                . "WHERE Lid_nr = " . $row["Lid_nr"];
+                                        if ($resultDonatie = mysqli_query($con, $querybetalingen)) {
+                                            while ($row = mysqli_fetch_array($resultDonatie)) {
+                                                echo "<td>" . $row["Datum_donatie"] . "</td>"
+                                                . "<td>" . $row["Donatie_kenmerk"] . "</td>";
+                                            }
+                                        } else {
+                                            echo "<td> </td>"
+                                            . "<td> </td>";
+                                        }
+                                        echo "</tr>";
                                     }
                                 } else {
                                     
@@ -130,8 +148,21 @@ and open the template in the editor.
                                         . "<td>" . $row["Adres"] . "</td>"
                                         . "<td>" . $row["Woonplaats"] . "</td>"
                                         . "<td>" . $row["Postcode"] . "</td>"
-                                        . "<td>" . $row["Extra_info"] . "</td>"
-                                        . "</tr>";
+                                        . "<td>" . $row["Extra_info"] . "</td>";
+
+                                        $querybetalingen = "SELECT Datum_donatie, Donatie_kenmerk "
+                                                . "FROM donaties "
+                                                . "WHERE Lid_nr = " . $row["Lid_nr"];
+                                        if ($resultDonatie = mysqli_query($con, $querybetalingen)) {
+                                            while ($row = mysqli_fetch_array($resultDonatie)) {
+                                                echo "<td>" . $row["Datum_donatie"] . "</td>"
+                                                . "<td>" . $row["Donatie_kenmerk"] . "</td>";
+                                            }
+                                        } else {
+                                            echo "<td> </td>"
+                                            . "<td> </td>";
+                                        }
+                                        echo "</tr>";
                                     }
                                 } else {
                                     echo "There was a problem with the Database or Query";
