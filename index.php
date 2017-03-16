@@ -89,12 +89,6 @@ and open the template in the editor.
                                         . "Adres, Woonplaats, Postcode, Extra_info "
                                         . "FROM ledenregister lid, organisaties org "
                                         . "WHERE lid.Organisatie_nr = org.Organisatie_nr";
-                                $querybetalingen = "SELECT Datum_donatie, Donatie_kenmerk "
-                                        . "FROM ledenregister lid, donaties d"
-                                        . "WHERE lid.Lid_nr = d.Lid_nr";
-                                //$queryselected = " AND lid.Lid_nr = ". $selectedLid; 
-
-
 
                                 if ($result = mysqli_query($con, $queryleden)) {
                                     while ($row = mysqli_fetch_array($result)) {
@@ -170,14 +164,13 @@ and open the template in the editor.
                                 ?>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
             </div>
             <!-- Trigger the modal with a button -->
+            <button id="ToevoegenLidModal" name ="ToevoegenLidModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalAdd">Lid Toevoegen</button>
             <button id="LidModal" name="LidModal" type="button" class="btn btn-info btn-lg"  data-toggle="modal" data-target="#ModalLid" disabled>Lid informatie</button>
             <button id="EmailModal" name ="EmailModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalEmail" disabled>Email Lid</button>
-            <button id="ToevoegenLidModal" name ="ToevoegenLidModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalAdd">Lid Toevoegen</button>
             <button id="VerwijderLidModal" name ="VerwijderLidModal" type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#DeleteMemberModal" disabled>Verwijder Lid</button>
             <!-- Modal -->
             <div id="ModalLid" class="modal fade" role="dialog">
@@ -199,7 +192,7 @@ and open the template in the editor.
                     </div>
                 </div>
             </div>
-            
+
             <div id="ModalEmail" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
@@ -219,7 +212,7 @@ and open the template in the editor.
                     </div>
                 </div>
             </div>
-            
+
             <div id="ModalAdd" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
@@ -239,7 +232,7 @@ and open the template in the editor.
                     </div>
                 </div>
             </div>
-            
+
             <div id="DeleteMemberModal" class="modal fade" role="dialog">
                 <div class="modal-dialog">
                     <!-- Modal content-->
@@ -262,8 +255,11 @@ and open the template in the editor.
     </body>
     <script>
         $(document).ready(function () {
+            //horizontal Scrolling
+            $('#example').DataTable({"scrollX": true});
             var table = $('#example').DataTable();
 
+            //Function for selecting which buttons will be Activated and disabled.
             $('#example tbody').on('click', 'tr', function () {
                 if ($(this).hasClass('selected')) {
                     $(this).removeClass('selected');
@@ -277,10 +273,10 @@ and open the template in the editor.
                     $("#Verwijderen").text("Weet u zeker dat u dit lid wilt verwijderen?");
                     $("#Verwijderleden").text("Lid Verwijderen");
                 } else {
-                   $("#EmailModal").text("Email Leden");
-                   $("#VerwijderLidModal").text("Verwijder Leden");
-                   $("#Verwijderen").text("Weet u zeker dat u deze leden wilt verwijderen?");
-                   $("#Verwijderleden").text("Leden Verwijderen");
+                    $("#EmailModal").text("Email Leden");
+                    $("#VerwijderLidModal").text("Verwijder Leden");
+                    $("#Verwijderen").text("Weet u zeker dat u deze leden wilt verwijderen?");
+                    $("#Verwijderleden").text("Leden Verwijderen");
                 }
                 $("#LidModal").attr("disabled", $('#example').find("tr.selected").length != 1);
                 $("#EmailModal").attr("disabled", $('#example').find("tr.selected").length == 0);
