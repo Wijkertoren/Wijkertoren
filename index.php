@@ -312,6 +312,42 @@ and open the template in the editor.
                         </div>
                         <div class="modal-footer">
                             <button id="FormPostAdd" method="post" action="" type="button" class="btn btn-default" data-dismiss="modal">Toevoegen</button>
+                            <!-- Mogelijk script van ajax voor Query doo te geven ;) (WIP)  -->
+                            <script>
+                                //WIP Testing out stuff...
+                                /*$.ajax({
+                                    type: "POST",
+                                    url: url,
+                                    data: data,
+                                    success: success,
+                                    dataType: dataType
+                                });
+
+                                $.post("ajax/test.html", function (data) {
+                                    $(".result").html(data);
+                                });
+
+
+                                var jqxhr = $.post("EXPORT2Database.php", function () {
+                                    alert("success");
+                                })
+                                        .done(function () {
+                                            alert("second success");
+                                        })
+                                        .fail(function () {
+                                            alert("error");
+                                        })
+                                        .always(function () {
+                                            alert("finished");
+                                        });
+
+                                        // Perform other work here ...
+
+                                // Set another completion function for the request above
+                                jqxhr.always(function () {
+                                    alert("second finished");
+                                });*/
+                            </script>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Annuleren</button>
                         </div>
                     </div>
