@@ -16,6 +16,7 @@ and open the template in the editor.
     <body>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="http://malsup.github.com/jquery.form.js"></script> 
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
@@ -222,7 +223,7 @@ and open the template in the editor.
                             <h4 class="modal-title">Lid Toevoegen</h4>
                         </div>
                         <div class="modal-body">
-                            <form class="form-horizontal">
+                            <form id="export2Database" action="EXPORT2Database.php" method="post" class="form-horizontal">
                                 <div class="form-group col-sm-6">
                                     <label for="Voornaam" class="col-sm-4 control-label">Voornaam</label>
                                     <div class="col-sm-8">
@@ -256,7 +257,7 @@ and open the template in the editor.
                                 <div class="form-group col-sm-6">
                                     <label for="ContactPersoon" class="col-sm-4 control-label">Contact Persoon</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="ContactPersoon" placeholder="Contact Persoon...">
+                                        <input type="text" class="form-control" id="Contact_persoon" placeholder="Contact Persoon...">
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-6">
@@ -268,7 +269,7 @@ and open the template in the editor.
                                 <div class="form-group col-sm-6">
                                     <label for="ExtraEmail" class="col-sm-4 control-label">Extra Email</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="ExtraEmail" placeholder="Extra Email...">
+                                        <input type="text" class="form-control" id="Extra_email" placeholder="Extra Email...">
                                     </div>
                                 </div>
                                 <div class="form-group col-sm-6">
@@ -304,13 +305,13 @@ and open the template in the editor.
                                 <div class="form-group col-sm-6">
                                     <label for="ExtraInfo" class="col-sm-4 control-label">Extra Info</label>
                                     <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="ExtraInfo" placeholder="Extra Info...">
+                                        <input type="text" class="form-control" id="Extra_info" placeholder="Extra Info...">
                                     </div>
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Toevoegen</button>
+                            <button id="FormPostAdd" method="post" action="" type="button" class="btn btn-default" data-dismiss="modal">Toevoegen</button>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Annuleren</button>
                         </div>
                     </div>
