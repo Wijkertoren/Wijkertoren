@@ -168,216 +168,249 @@ and open the template in the editor.
                     </div>
                 </div>
             </div>
+
             <!-- Trigger the modal with a button -->
             <button id="ToevoegenLidModal" name ="ToevoegenLidModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalAdd">Lid Toevoegen</button>
             <button id="LidModal" name="LidModal" type="button" class="btn btn-info btn-lg"  data-toggle="modal" data-target="#ModalLid" disabled>Lid informatie</button>
             <button id="EmailModal" name ="EmailModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalEmail" disabled>Email Lid</button>
             <button id="VerwijderLidModal" name ="VerwijderLidModal" type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#DeleteMemberModal" disabled>Verwijder Lid</button>
-            <!-- Modal voor het informatie scherm van een Lid -->
-            <div id="ModalLid" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Lid Informatie</h4>
-                        </div>
-                        <div class="modal-body">
-                            <?php
-                            //hier database informatie ;)
-                            ?>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal voor het versturen van de emails naar de leden -->
-            <div id="ModalEmail" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Email Leden</h4>
-                        </div>
-                        <div class="modal-body">
-                            <?php
-                            //hier database informatie ;)
-                            ?>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal voor het Toevoegen van Leden. -->
-            <div id="ModalAdd" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Lid Toevoegen</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form id="export2Database" action="EXPORT2Database.php" method="post" class="form-horizontal">
-                                <div class="form-group col-sm-6">
-                                    <label for="Voornaam" class="col-sm-4 control-label">Voornaam</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="Voornaam" placeholder="Voornaam...">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="Achternaam" class="col-sm-4 control-label">Achternaam</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="Achternaam" placeholder="Achternaam...">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="Tussenvoegsel" class="col-sm-4 control-label">Tussenvoegsel</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="Tussenvoegsel" placeholder="Tussenvoegsel...">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="Geslacht" class="col-sm-4 control-label">Geslacht</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="Geslacht" placeholder="Geslacht...">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="Organisatie" class="col-sm-4 control-label">Organisatie</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="Organisatie" placeholder="Organisatie...">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="ContactPersoon" class="col-sm-4 control-label">Contact Persoon</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="Contact_persoon" placeholder="Contact Persoon...">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="Email" class="col-sm-4 control-label">Email</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="Email" placeholder="Email...">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="ExtraEmail" class="col-sm-4 control-label">Extra Email</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="Extra_email" placeholder="Extra Email...">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="Telefoon" class="col-sm-4 control-label">Telefoon</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="Telefoon" placeholder="Telefoon...">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="Mobiel" class="col-sm-4 control-label">Mobiel</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="Mobiel" placeholder="Mobiel...">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="Adres" class="col-sm-4 control-label">Adres</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="Adres" placeholder="Adres...">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="Woonplaats" class="col-sm-4 control-label">Woonplaats</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="Woonplaats" placeholder="Woonplaats...">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="Postcode" class="col-sm-4 control-label">Postcode</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="Postcode" placeholder="Postcode...">
-                                    </div>
-                                </div>
-                                <div class="form-group col-sm-6">
-                                    <label for="ExtraInfo" class="col-sm-4 control-label">Extra Info</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" class="form-control" id="Extra_info" placeholder="Extra Info...">
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button id="FormPostAdd" method="post" action="" type="button" class="btn btn-default" data-dismiss="modal">Toevoegen</button>
-                            <!-- Mogelijk script van ajax voor Query doo te geven ;) (WIP)  -->
-                            <script>
-                                //WIP Testing out stuff...
-                                /*$.ajax({
-                                    type: "POST",
-                                    url: url,
-                                    data: data,
-                                    success: success,
-                                    dataType: dataType
-                                });
-
-                                $.post("ajax/test.html", function (data) {
-                                    $(".result").html(data);
-                                });
-
-
-                                var jqxhr = $.post("EXPORT2Database.php", function () {
-                                    alert("success");
-                                })
-                                        .done(function () {
-                                            alert("second success");
-                                        })
-                                        .fail(function () {
-                                            alert("error");
-                                        })
-                                        .always(function () {
-                                            alert("finished");
-                                        });
-
-                                        // Perform other work here ...
-
-                                // Set another completion function for the request above
-                                jqxhr.always(function () {
-                                    alert("second finished");
-                                });*/
-                            </script>
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Annuleren</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <!-- Modal voor het verwijderen van Leden -->
-            <div id="DeleteMemberModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 id="Verwijderleden" class="modal-title">Leden Verwijderen</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="col-sm-4">
-
-                            </div>
-                            <div class="col-sm-6">
-                                <label class="center-block control-label" id="Verwijderen">Weet u zeker dat u dit lid wilt verwijderen?</label>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Ja</button>
-                            <button type="button" class="btn btn-info" data-dismiss="modal">Nee</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
+
+        <!-- Modal voor het informatie scherm van een Lid -->
+        <div id="ModalLid" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Lid Informatie</h4>
+                    </div>
+                    <div class="modal-body">
+                        <!-- Ophalen van de Data uit de Database om de informatie van het desbetreffende lid weertegeven. -->
+                        <script>
+                        
+                        </script>
+                        <?php
+                        echo '  <form id="export2Database2" action="EXPORT2Database.php" method="post" class="form-horizontal">
+                                    <div class="form-group col-sm-6">
+                                        <label for="FromDB" class="col-sm-4 control-label">Voornaam</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" id="FromDBB" class="form-control"></label>
+                                        </div>
+                                    </div>
+                                </form>'
+                        ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                    </div>
+                    <!-- /.modal-footer End -->
+                </div>
+                <!-- /.modal-content End -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+        <!-- Modal voor het versturen van de emails naar de leden -->
+        <div id="ModalEmail" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Email Leden</h4>
+                    </div>
+                    <div class="modal-body">
+                        <?php
+                        //hier database informatie ;)
+                        ?>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                    </div>
+                    <!-- /.modal-footer End -->
+                </div>
+                <!-- /.modal-content End -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+        <!-- Modal voor het Toevoegen van Leden. -->
+        <div id="ModalAdd" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Lid Toevoegen</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="export2Database" action="EXPORT2Database.php" method="post" class="form-horizontal">
+                            <div class="form-group col-sm-6">
+                                <label for="Voornaam" class="col-sm-4 control-label">Voornaam</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Voornaam" placeholder="Voornaam...">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="Achternaam" class="col-sm-4 control-label">Achternaam</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Achternaam" placeholder="Achternaam...">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="Tussenvoegsel" class="col-sm-4 control-label">Tussenvoegsel</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Tussenvoegsel" placeholder="Tussenvoegsel...">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="Geslacht" class="col-sm-4 control-label">Geslacht</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Geslacht" placeholder="Geslacht...">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="Organisatie" class="col-sm-4 control-label">Organisatie</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Organisatie" placeholder="Organisatie...">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="ContactPersoon" class="col-sm-4 control-label">Contact Persoon</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Contact_persoon" placeholder="Contact Persoon...">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="Email" class="col-sm-4 control-label">Email</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Email" placeholder="Email...">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="ExtraEmail" class="col-sm-4 control-label">Extra Email</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Extra_email" placeholder="Extra Email...">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="Telefoon" class="col-sm-4 control-label">Telefoon</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Telefoon" placeholder="Telefoon...">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="Mobiel" class="col-sm-4 control-label">Mobiel</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Mobiel" placeholder="Mobiel...">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="Adres" class="col-sm-4 control-label">Adres</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Adres" placeholder="Adres...">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="Woonplaats" class="col-sm-4 control-label">Woonplaats</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Woonplaats" placeholder="Woonplaats...">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="Postcode" class="col-sm-4 control-label">Postcode</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Postcode" placeholder="Postcode...">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label for="ExtraInfo" class="col-sm-4 control-label">Extra Info</label>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="Extra_info" placeholder="Extra Info...">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="FormPostAdd" method="post" action="" type="button" class="btn btn-default" data-dismiss="modal">Toevoegen</button>
+                        <!-- Mogelijk script van ajax voor Query door te geven ;) (WIP)  -->
+                        <script>
+                            //WIP Testing out stuff...
+                            /*$.ajax({
+                             type: "POST",
+                             url: url,
+                             data: data,
+                             success: success,
+                             dataType: dataType
+                             });
+                             
+                             $.post("ajax/test.html", function (data) {
+                             $(".result").html(data);
+                             });
+                             
+                             
+                             var jqxhr = $.post("EXPORT2Database.php", function () {
+                             alert("success");
+                             })
+                             .done(function () {
+                             alert("second success");
+                             })
+                             .fail(function () {
+                             alert("error");
+                             })
+                             .always(function () {
+                             alert("finished");
+                             });
+                             
+                             // Perform other work here ...
+                             
+                             // Set another completion function for the request above
+                             jqxhr.always(function () {
+                             alert("second finished");
+                             });*/
+                        </script>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Annuleren</button>
+                    </div>
+                    <!-- /.modal-footer End -->
+                </div>
+                <!-- /.modal-content End -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+
+        <!-- Modal voor het verwijderen van Leden -->
+        <div id="DeleteMemberModal" class="modal fade" role="dialog">
+            <div class="modal-dialog">
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 id="Verwijderleden" class="modal-title">Leden Verwijderen</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="col-sm-4">
+
+                        </div>
+                        <div class="col-sm-6">
+                            <label class="center-block control-label" id="Verwijderen">Weet u zeker dat u dit lid wilt verwijderen?</label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Ja</button>
+                        <button type="button" class="btn btn-info" data-dismiss="modal">Nee</button>
+                    </div>
+                    <!-- /.modal-footer End -->
+                </div>
+                <!-- /.modal-content End -->
+            </div>
+            <!-- /.modal-dialog -->
+        </div>
+        <!-- /.modal -->
+        
     </body>
     <script>
         $(document).ready(function () {
@@ -389,7 +422,7 @@ and open the template in the editor.
             $('.modal').on('hidden.bs.modal', function () {
                 $(this).find('form')[0].reset();
             });
-            //Function for selecting which buttons will be Activated and disabled.
+            //Function for selecting which buttons will be Activated and disabled. / Functie voor het selecteren in het ledenregister en welke button er klikbaar word en welke niet.
             $('#example tbody').on('click', 'tr', function () {
                 if ($(this).hasClass('selected')) {
                     $(this).removeClass('selected');
