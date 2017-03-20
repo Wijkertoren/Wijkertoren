@@ -15,7 +15,7 @@ and open the template in the editor.
     </head>
     <body>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="js/jquery-3.2.0.js"></script>
         <script src="http://malsup.github.com/jquery.form.js"></script> 
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
@@ -191,14 +191,7 @@ and open the template in the editor.
                         
                         </script>
                         <?php
-                        echo '  <form id="export2Database2" action="EXPORT2Database.php" method="post" class="form-horizontal">
-                                    <div class="form-group col-sm-6">
-                                        <label for="FromDB" class="col-sm-4 control-label">Voornaam</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" id="FromDBB" class="form-control"></label>
-                                        </div>
-                                    </div>
-                                </form>'
+                        
                         ?>
                     </div>
                     <div class="modal-footer">
@@ -247,7 +240,7 @@ and open the template in the editor.
                         <h4 class="modal-title">Lid Toevoegen</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="export2Database" action="EXPORT2Database.php" method="post" class="form-horizontal">
+                        <form id="2DB" method="post" class="form-horizontal">
                             <div class="form-group col-sm-6">
                                 <label for="Voornaam" class="col-sm-4 control-label">Voornaam</label>
                                 <div class="col-sm-8">
@@ -335,42 +328,10 @@ and open the template in the editor.
                         </form>
                     </div>
                     <div class="modal-footer">
-                        <button id="FormPostAdd" method="post" action="" type="button" class="btn btn-default" data-dismiss="modal">Toevoegen</button>
+                        <button id="FormPostAdd" method="post" action="" type="submit" class="btn btn-default">Toevoegen</button>
                         <!-- Mogelijk script van ajax voor Query door te geven ;) (WIP)  -->
                         <script>
                             //WIP Testing out stuff...
-                            /*$.ajax({
-                             type: "POST",
-                             url: url,
-                             data: data,
-                             success: success,
-                             dataType: dataType
-                             });
-                             
-                             $.post("ajax/test.html", function (data) {
-                             $(".result").html(data);
-                             });
-                             
-                             
-                             var jqxhr = $.post("EXPORT2Database.php", function () {
-                             alert("success");
-                             })
-                             .done(function () {
-                             alert("second success");
-                             })
-                             .fail(function () {
-                             alert("error");
-                             })
-                             .always(function () {
-                             alert("finished");
-                             });
-                             
-                             // Perform other work here ...
-                             
-                             // Set another completion function for the request above
-                             jqxhr.always(function () {
-                             alert("second finished");
-                             });*/
                         </script>
                         <button type="button" class="btn btn-danger" data-dismiss="modal">Annuleren</button>
                     </div>
@@ -393,14 +354,14 @@ and open the template in the editor.
                     </div>
                     <div class="modal-body">
                         <div class="col-sm-4">
-
+                            <!-- vrije ruimte om de text in het midden te krijgen -->
                         </div>
                         <div class="col-sm-6">
                             <label class="center-block control-label" id="Verwijderen">Weet u zeker dat u dit lid wilt verwijderen?</label>
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Ja</button>
+                        <button type="button" class="btn btn-danger">Ja</button>
                         <button type="button" class="btn btn-info" data-dismiss="modal">Nee</button>
                     </div>
                     <!-- /.modal-footer End -->
