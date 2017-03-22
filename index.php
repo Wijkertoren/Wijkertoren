@@ -114,9 +114,18 @@ and open the template in the editor.
                                                 . "FROM donaties "
                                                 . "WHERE Lid_nr = " . $row["Lid_nr"];
                                         if ($resultDonatie = mysqli_query($con, $querybetalingen)) {
-                                            while ($row = mysqli_fetch_array($resultDonatie)) {
-                                                echo "<td>" . $row["Datum_donatie"] . "</td>"
-                                                . "<td>" . $row["Donatie_kenmerk"] . "</td>";
+                                            if ($resultDonatie->num_rows === 0) {
+                                                echo "<td> </td>"
+                                                . "<td> </td>";
+                                            } else {
+                                                while ($row = mysqli_fetch_array($resultDonatie)) {
+                                                    if ($row["Datum_donatie"] != 0000-00-00) {
+                                                        echo "<td>" . $row["Datum_donatie"] . "</td>";
+                                                    } else {
+                                                        echo "<td> </td>";
+                                                    }
+                                                    echo "<td>" . $row["Donatie_kenmerk"] . "</td>";
+                                                }
                                             }
                                         } else {
                                             echo "<td> </td>"
@@ -149,18 +158,23 @@ and open the template in the editor.
                                                 . "FROM donaties "
                                                 . "WHERE Lid_nr = " . $row["Lid_nr"];
                                         if ($resultDonatie = mysqli_query($con, $querybetalingen)) {
-                                            while ($row = mysqli_fetch_array($resultDonatie)) {
-                                                echo "<td>" . $row["Datum_donatie"] . "</td>"
-                                                . "<td>" . $row["Donatie_kenmerk"] . "</td>";
+                                            if ($resultDonatie->num_rows === 0) {
+                                                echo "<td> </td>"
+                                                . "<td> </td>";
+                                            } else {
+                                                while ($row = mysqli_fetch_array($resultDonatie)) {
+                                                    echo "<td>" . $row["Datum_donatie"] . "</td>"
+                                                    . "<td>" . $row["Donatie_kenmerk"] . "</td>";
+                                                }
                                             }
                                         } else {
-                                            echo "<td> </td>"
-                                            . "<td> </td>";
+                                            echo "<td>...</td>"
+                                            . "<td>...</td>";
                                         }
                                         echo "</tr>";
                                     }
                                 } else {
-                                    echo "There was a problem with the Database or Query";
+                                    
                                 }
                                 ?>
                             </tbody>
