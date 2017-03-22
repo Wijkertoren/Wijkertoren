@@ -9,6 +9,7 @@ and open the template in the editor.
         <title>Wijkertoren Ledenregister</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/main.css" rel="stylesheet" type="text/css">
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href="css/database.css" rel="stylesheet" type="text/css">
         <link href="css/dataTablesjQuery.css" rel="stylesheet" type="text/css">
@@ -180,12 +181,19 @@ and open the template in the editor.
                             </tbody>
                         </table>
                     </div>
-
+                    
+                    <div class="testing"></div>
                     <!-- Trigger the modal with a button -->
-                    <button id="ToevoegenLidModal" name ="ToevoegenLidModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalAdd">Lid Toevoegen</button>
-                    <button id="LidModal" name="LidModal" type="button" class="btn btn-info btn-lg"  data-toggle="modal" data-target="#ModalLid" disabled>Lid informatie</button>
-                    <button id="EmailModal" name ="EmailModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalEmail" disabled>Email Lid</button>
-                    <button id="VerwijderLidModal" name ="VerwijderLidModal" type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#DeleteMemberModal" disabled>Verwijder Lid</button>
+                    <div class="col-sm-12" id="mainBTNcontainer">
+                        <div class="col-sm-10">
+                            <button id="ToevoegenLidModal" name ="ToevoegenLidModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalAdd">Lid Toevoegen</button>
+                            <button id="LidModal" name="LidModal" type="button" class="btn btn-info btn-lg"  data-toggle="modal" data-target="#ModalLid" disabled>Lid informatie</button>
+                            <button id="EmailModal" name ="EmailModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalEmail" disabled>Email Lid</button>
+                        </div>
+                        <div class="col-sm-2">
+                            <button id="VerwijderLidModal" name ="VerwijderLidModal" type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#DeleteMemberModal" disabled>Verwijder Lid</button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Modal voor het informatie scherm van een Lid -->

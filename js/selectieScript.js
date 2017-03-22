@@ -1,6 +1,7 @@
 $(document).ready(function () {
     //remove data from database button function.
     $('#DeleteLid').on('submit', function(e) {
+        e.preventDefault();
         // remove data from database
         alert('succes');
     });
