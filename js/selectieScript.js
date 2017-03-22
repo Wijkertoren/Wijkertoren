@@ -1,8 +1,8 @@
 $(document).ready(function () {
-    
     //remove data from database button function.
-    $('#buttonID').on('submit', function(e) {
+    $('#DeleteLid').on('submit', function(e) {
         // remove data from database
+        alert('succes');
     });
     //horizontal Scrolling and vertical Scrolling
     $('#example').DataTable({"scrollX": true, "scrollY": '50vh'});

@@ -11,7 +11,7 @@ and open the template in the editor.
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href="css/database.css" rel="stylesheet" type="text/css">
-        <link href="css/data-tables-min.css" rel="stylesheet" type="text/css">
+        <link href="css/dataTablesjQuery.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
@@ -119,7 +119,7 @@ and open the template in the editor.
                                                 . "<td> </td>";
                                             } else {
                                                 while ($row = mysqli_fetch_array($resultDonatie)) {
-                                                    if ($row["Datum_donatie"] != 0000-00-00) {
+                                                    if ($row["Datum_donatie"] != 0000 - 00 - 00) {
                                                         echo "<td>" . $row["Datum_donatie"] . "</td>";
                                                     } else {
                                                         echo "<td> </td>";
@@ -363,10 +363,12 @@ and open the template in the editor.
                                     <label class="center-block control-label" id="Verwijderen">Weet u zeker dat u dit lid wilt verwijderen?</label>
                                 </div>
                             </div>
-                            <div class="modal-footer">
-                                <button id="DeleteLid" type="button" class="btn btn-danger">Ja</button>
-                                <button type="button" class="btn btn-info" data-dismiss="modal">Nee</button>
-                            </div>
+                            <form id="DeleteLid" method="post">
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-danger">Ja</button>
+                                    <button type="button" class="btn btn-info" data-dismiss="modal">Nee</button>
+                                </div>
+                            </form>
                             <!-- /.modal-footer End -->
                         </div>
                         <!-- /.modal-content End -->
