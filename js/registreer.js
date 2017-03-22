@@ -21,7 +21,8 @@ $(document).ready(function () {
             Adres: $('#Adres').val(),
             Woonplaats: $('#Woonplaats').val(),
             Postcode: $('#Postcode').val(),
-            ExtraInfo: $('#Extra_info').val()
+            ExtraInfo: $('#Extra_info').val(),
+            DonatieKenmerk: $('#Donatie_kenmerk').val()
         };
 
         //Sends the value of the array above into a list to show.

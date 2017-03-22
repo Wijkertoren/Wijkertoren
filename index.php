@@ -339,7 +339,12 @@ and open the template in the editor.
                                             <input type="text" class="form-control" id="Extra_info" placeholder="Extra Info...">
                                         </div>
                                     </div>
-
+                                    <div class="form-group col-sm-6">
+                                        <label for="Donatie" class="col-sm-4 control-label">Donatie Kenmerk</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" id="Donatie_kenmerk" placeholder="Donatie Kenmerk...">
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="modal-footer">
                                     <button id="FormPostAdd" method="POST" type="submit" class="btn btn-default">Toevoegen</button>
