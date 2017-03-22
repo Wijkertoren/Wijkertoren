@@ -1,6 +1,11 @@
 $(document).ready(function () {
-    //horizontal Scrolling
-    $('#example').DataTable({"scrollX": true});
+    
+    //remove data from database button function.
+    $('#buttonID').on('submit', function(e) {
+        // remove data from database
+    });
+    //horizontal Scrolling and vertical Scrolling
+    $('#example').DataTable({"scrollX": true, "scrollY": '50vh'});
     var table = $('#example').DataTable();
 
     //Resets all the elements in the Modal to empty again.

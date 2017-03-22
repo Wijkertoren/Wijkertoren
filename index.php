@@ -19,7 +19,7 @@ and open the template in the editor.
         <script src="http://malsup.github.com/jquery.form.js"></script> 
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="js/data-tables.min.js"></script>
 
         <?php
         $con = mysqli_connect("localhost", "root", "", "wijkertoren");
@@ -364,7 +364,7 @@ and open the template in the editor.
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-danger">Ja</button>
+                                <button id="DeleteLid" type="button" class="btn btn-danger">Ja</button>
                                 <button type="button" class="btn btn-info" data-dismiss="modal">Nee</button>
                             </div>
                             <!-- /.modal-footer End -->
