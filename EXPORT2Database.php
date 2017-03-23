@@ -11,93 +11,83 @@ foreach ($_POST as $key => $value) {
 }
 $decodeJSON = json_decode($encodeFormJSON);
 
-//Prepared query code for insert into "personen".
-function InsertINTOpersonen() {
+//function for inserting data into the database "personen"
+function InsertINTOpersonen($con) {
     global $decodeJSON;
+    if ($decodeJSON->{'Voornaam'} != "" && $decodeJSON->{'Achternaam'} != "") {
+        // prepare and bind
+        $stmt = $con->prepare("INSERT INTO personen (Voornaam, Achternaam, Tussenvoegsel, Geslacht) VALUES (?, ?, ?, ?)");
+        $stmt->bind_param("ssss", $voornaam, $achternaam, $tussenvoegsel, $geslacht);
 
-    // prepare and bind
-    $stmt = $con->prepare("INSERT INTO personen (Voornaam, Achternaam, Tussenvoegsel, Geslacht) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $voornaam, $achternaam, $tussenvoegsel, $geslacht);
+        // set parameters and execute
+        $voornaam = $decodeJSON->{'Voornaam'};
+        $achternaam = $decodeJSON->{'Achternaam'};
+        $tussenvoegsel = $decodeJSON->{'Tussenvoegsel'};
+        $geslacht = $decodeJSON->{'Geslacht'};
+        $stmt->execute();
 
-    // set parameters and execute
-    $voornaam = $decodeJSON->{'Voornaam'};
-    $achternaam = $decodeJSON->{'Achternaam'};
-    $tussenvoegsel = $decodeJSON->{'Tussenvoegsel'};
-    $geslacht = $decodeJSON->{'Geslacht'};
-    $stmt->execute();
-    
-    echo "Nieuw Lid is successvol toegevoegd";
-    $stmt->close();
+        $lastIDPersoon = $stmt->insert_id;
 
+        $stmt->close();
+    } else {
+        echo "skipped personen query required fields does not match requiremenrts";
+    }
 }
 
-//Prepared query code for insert into "ledenregister".
-function InsertINTOledenregister() {
+//function for inserting data into the database "organisatie"
+function InsertINTOorganisatie($con) {
     global $decodeJSON;
-    
-    //Change code to the corrisponding table
-    /*
-    // prepare and bind
-    $stmt = $con->prepare("INSERT INTO personen (Voornaam, Achternaam, Tussenvoegsel, Geslacht) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $voornaam, $achternaam, $tussenvoegsel, $geslacht);
+    if ($decodeJSON->{'Organisatie'} != "" && $decodeJSON->{'ContactPersoon'} != "") {
+        //prepare and bind
+        $stmt = $con->prepare("INSERT INTO organisaties (Organisatie_naam, Contact_persoon) VALUES (?, ?)");
+        $stmt->bind_param("ss", $OrganisatieNaam, $ContactPersoon);
 
-    // set parameters and execute
-    $voornaam = $decodeJSON->{'Voornaam'};
-    $achternaam = $decodeJSON->{'Achternaam'};
-    $tussenvoegsel = $decodeJSON->{'Tussenvoegsel'};
-    $geslacht = $decodeJSON->{'Geslacht'};
-    $stmt->execute();
-    
-    echo "Nieuw Lid is successvol toegevoegd";
-    $stmt->close();
-     */
+        // set parameters and execute
+        $OrganisatieNaam = $decodeJSON->{'Organisatie'};
+        $ContactPersoon = $decodeJSON->{'ContactPersoon'};
+        $stmt->execute();
+
+        $lastIDOrganisatie = $stmt->insert_id;
+
+        $stmt->close();
+    } else {
+        echo "skipped Organisatie query required fields does not match requiremenrts";
+    }
 }
 
-//Prepared query code for insert into "organisatie".
-function InsertINTOorganisatie() {
+//function for inserting data into the database "ledenregister"
+function InsertINTOledenregister($con) {
     global $decodeJSON;
-    
-    //Change code to the corrisponding table
-    /*
+    global $lastIDPersoon;
+    global $lastIDOrganisatie;
+    return $lastIDPersoon;
     // prepare and bind
-    $stmt = $con->prepare("INSERT INTO personen (Voornaam, Achternaam, Tussenvoegsel, Geslacht) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $voornaam, $achternaam, $tussenvoegsel, $geslacht);
+    $stmt = $con->prepare("INSERT INTO ledenregister (Persoon_nr, Organisatie_nr, Email, Extra_email, Telefoon, Mobiel, Adres, Woonplaats, Postcode, Extra_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("sssssssssssss", $email, $extraEmail, $telefoon, $mobiel, $adres, $woonplaats, $postcode, $extrainfo, $persoonsnr, $organisatienr);
 
     // set parameters and execute
-    $voornaam = $decodeJSON->{'Voornaam'};
-    $achternaam = $decodeJSON->{'Achternaam'};
-    $tussenvoegsel = $decodeJSON->{'Tussenvoegsel'};
-    $geslacht = $decodeJSON->{'Geslacht'};
+    //$persoonnr = $lastIDPersoon;
+    //$organisatienr = $lastIDOrganisatie;
+    $email = $decodeJSON->{'Email'};
+    $extraEmail = $decodeJSON->{'ExtraEmail'};
+    $telefoon = $decodeJSON->{'Telefoon'};
+    $mobiel = $decodeJSON->{'Mobiel'};
+    $adres = $decodeJSON->{'Adres'};
+    $woonplaats = $decodeJSON->{'Woonplaats'};
+    $postcode = $decodeJSON->{'Postcode'};
+    $extrainfo = $decodeJSON->{'ExtraInfo'};
+    $persoonsnr = $lastIDPersoon;
+    $organisatienr = $lastIDOrganisatie;
     $stmt->execute();
-    
-    echo "Nieuw Lid is successvol toegevoegd";
+
     $stmt->close();
-     */
 }
 
-//Prepared query code for inserting into "donatie"
-function InsertINTOdonatie() {
-    global $decodeJSON;
+//function for inserting data into the database "donaties"
+function InsertINTOdonaties($con) {
     
-    //Change code to the corrisponding table
-    /*
-    // prepare and bind
-    $stmt = $con->prepare("INSERT INTO personen (Voornaam, Achternaam, Tussenvoegsel, Geslacht) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $voornaam, $achternaam, $tussenvoegsel, $geslacht);
-
-    // set parameters and execute
-    $voornaam = $decodeJSON->{'Voornaam'};
-    $achternaam = $decodeJSON->{'Achternaam'};
-    $tussenvoegsel = $decodeJSON->{'Tussenvoegsel'};
-    $geslacht = $decodeJSON->{'Geslacht'};
-    $stmt->execute();
-    
-    echo "Nieuw Lid is successvol toegevoegd";
-    $stmt->close();
-     */
 }
 
-InsertINTOpersonen();
-InsertINTOledenregister();
-InsertINTOorganisatie();
-InsertINTOdonatie();
+InsertINTOpersonen($con);
+InsertINTOorganisatie($con);
+InsertINTOledenregister($con);
