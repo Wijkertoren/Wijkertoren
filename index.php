@@ -23,11 +23,7 @@ and open the template in the editor.
         <script type="text/javascript" charset="utf8" src="js/data-tables.min.js"></script>
 
         <?php
-        $con = mysqli_connect("localhost", "root", "", "wijkertoren");
-        // Check connection
-        if (mysqli_connect_errno()) {
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        }
+        include 'connection.php';
         ?>
 
         <div class="container" id="maincontainer">
@@ -181,7 +177,7 @@ and open the template in the editor.
                             </tbody>
                         </table>
                     </div>
-                    
+
                     <div class="testing"></div>
                     <!-- Trigger the modal with a button -->
                     <div class="col-sm-12" id="mainBTNcontainer">
