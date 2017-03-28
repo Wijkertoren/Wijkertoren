@@ -3,9 +3,8 @@
 include_once 'connection.php';
 //creates an stdClass to view values given below.
 $formValues = new stdClass();
-$lastIDPersoon=null;
-$lastIDOrganisatie=null;
-$lastIDLid=null;
+
+
 
 foreach ($_POST as $key => $value) {
     //creates variable that loops through the $_POST to get the data given with the input field.
@@ -34,10 +33,13 @@ function InsertINTOpersonen($con) {
         $lastIDPersoon = $stmt->insert_id;
 
         var_dump($lastIDPersoon);
-        return $lastIDPersoon;
+           
+        
         $stmt->close();
+        return $lastIDPersoon;
     } else {
         echo "skipped personen query required fields does not match requiremenrts";
+        return $lastIDPersoon = null;
     }
 }
 
@@ -57,13 +59,15 @@ function InsertINTOorganisatie($con) {
         $lastIDOrganisatie = $stmt->insert_id;
 
         $stmt->close();
+        return $lastIDOrganisatie;
     } else {
         echo "skipped Organisatie query required fields does not match requiremenrts";
+        return $lastIDOrganisatie = null;
     }
 }
 
 //function for inserting data into the database "ledenregister"
-function InsertINTOledenregister($con,$lastIDLid ,$lastIDPersoon,$lastIDOrganisatie) {
+function InsertINTOledenregister($con, $lastIDPersoon, $lastIDOrganisatie) {
     global $decodeJSON;
     // prepare and bind
     $stmt = $con->prepare("INSERT INTO ledenregister (Persoon_nr, Organisatie_nr, Email, Extra_email, Telefoon, Mobiel, Adres, Woonplaats, Postcode, Extra_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
@@ -82,18 +86,19 @@ function InsertINTOledenregister($con,$lastIDLid ,$lastIDPersoon,$lastIDOrganisa
     $extrainfo = $decodeJSON->{'ExtraInfo'};
     $persoonsnr = $lastIDPersoon;
     $organisatienr = $lastIDOrganisatie;
-    
+
     var_dump($lastIDPersoon);
-    
+
     $stmt->execute();
 
-    $lastIDLid = $stmt->insert_id.var_dump($lastIDLid);
+    $lastIDLid = $stmt->insert_id;
 
     $stmt->close();
+    return $lastIDLid;
 }
 
 //function for inserting data into the database "donaties"
-function InsertINTOdonaties($con,$lastIDLid) {
+function InsertINTOdonaties($con, $lastIDLid) {
     global $decodeJSON;
     $donatiekenmerk = $decodeJSON->{'DonatieKenmerk'};
 
@@ -107,7 +112,7 @@ function InsertINTOdonaties($con,$lastIDLid) {
     $stmt->close();
 }
 
-InsertINTOpersonen($con);
-InsertINTOorganisatie($con);
-InsertINTOledenregister($con,$lastIDLid, $lastIDPersoon,$lastIDOrganisatie);
-InsertINTOdonaties($con,$lastIDLid);
+$lastIDPersoon = InsertINTOpersonen($con);
+$lastIDOrganisatie = InsertINTOorganisatie($con);
+$lastIDLid = InsertINTOledenregister($con, $lastIDPersoon, $lastIDOrganisatie);
+InsertINTOdonaties($con, $lastIDLid);
