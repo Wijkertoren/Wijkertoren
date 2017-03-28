@@ -24,6 +24,8 @@ and open the template in the editor.
 
         <?php
         include 'connection.php';
+        include 'ShowMember.php';
+        include 'DeleteMember.php';
         ?>
 
         <div class="container" id="maincontainer">
@@ -202,9 +204,11 @@ and open the template in the editor.
                                 <h4 class="modal-title">Lid Informatie</h4>
                             </div>
                             <div class="modal-body">
-
+                                <!-- Hier komt de informatie vanuit de DB te zien. -->
+                                
                             </div>
                             <div class="modal-footer">
+                                <button type="submit" class="btn btn-default" data-dismiss="modal">Bewerken</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
                             </div>
                             <!-- /.modal-footer End -->
