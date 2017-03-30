@@ -11,12 +11,12 @@ $(document).ready(function () {
         });
     });
     
-    $('#FromDB').on('submit', function (e) {
+    $('#ShowMember').on('submit', function (e) {
         e.preventDefault();
         
         $.ajax({
             method: "POST",
-            url: 'ShowMember.php'
+            url: 'EditMember.php'
         }).done(function (data) {
             
         });
