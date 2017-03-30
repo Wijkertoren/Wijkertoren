@@ -205,12 +205,14 @@ and open the template in the editor.
                             </div>
                             <div class="modal-body">
                                 <!-- Hier komt de informatie vanuit de DB te zien. -->
-                                
+
                             </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-default" data-dismiss="modal">Bewerken</button>
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
-                            </div>
+                            <form id="FromDB" method="post">
+                                <div class="modal-footer">
+                                    <button type="submit" class="btn btn-default">Bewerken</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Sluiten</button>
+                                </div>
+                            </form>
                             <!-- /.modal-footer End -->
                         </div>
                         <!-- /.modal-content End -->
@@ -234,7 +236,8 @@ and open the template in the editor.
                                 ?>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
+                                <button type="submit" class="btn btn-default">Email</button>
+                                <button type="button" class="btn btn-danger" data-dismiss="modal">Sluiten</button>
                             </div>
                             <!-- /.modal-footer End -->
                         </div>
@@ -378,8 +381,9 @@ and open the template in the editor.
                             </div>
                             <form id="DeleteLid" method="post">
                                 <div class="modal-footer">
-                                    <button type="submit" class="btn btn-danger">Ja</button>
-                                    <button type="button" class="btn btn-info" data-dismiss="modal">Nee</button>
+                                    <form id="DeletefromDB" method="post">
+                                        <button type="submit" class="btn btn-danger">Ja</button>
+                                        <button type="button" class="btn btn-info" data-dismiss="modal">Nee</button>
                                 </div>
                             </form>
                             <!-- /.modal-footer End -->

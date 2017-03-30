@@ -3,9 +3,6 @@
 include_once 'connection.php';
 //creates an stdClass to view values given below.
 $formValues = new stdClass();
-
-
-
 foreach ($_POST as $key => $value) {
     //creates variable that loops through the $_POST to get the data given with the input field.
     $formValues->$key = $value;
@@ -31,8 +28,6 @@ function InsertINTOpersonen($con) {
         $stmt->execute();
 
         $lastIDPersoon = $stmt->insert_id;
-
-        var_dump($lastIDPersoon);
            
         
         $stmt->close();
@@ -74,8 +69,6 @@ function InsertINTOledenregister($con, $lastIDPersoon, $lastIDOrganisatie) {
     $stmt->bind_param("iissssssss", $persoonsnr, $organisatienr, $email, $extraEmail, $telefoon, $mobiel, $adres, $woonplaats, $postcode, $extrainfo);
 
     // set parameters and execute
-    //$persoonnr = $lastIDPersoon;
-    //$organisatienr = $lastIDOrganisatie;
     $email = $decodeJSON->{'Email'};
     $extraEmail = $decodeJSON->{'ExtraEmail'};
     $telefoon = $decodeJSON->{'Telefoon'};

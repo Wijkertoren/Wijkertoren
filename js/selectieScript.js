@@ -1,9 +1,25 @@
 $(document).ready(function () {
     //remove data from database button function.
-    $('#DeleteLid').on('submit', function(e) {
+    $('#DeleteLid').on('submit', function (e) {
         e.preventDefault();
-        // remove data from database
-        alert('succes');
+        
+        $.ajax({
+            method: "POST",
+            url: 'DeleteMember.php'
+        }).done(function (data) {
+            
+        });
+    });
+    
+    $('#FromDB').on('submit', function (e) {
+        e.preventDefault();
+        
+        $.ajax({
+            method: "POST",
+            url: 'ShowMember.php'
+        }).done(function (data) {
+            
+        });
     });
     //horizontal Scrolling and vertical Scrolling
     $('#example').DataTable({"scrollX": true, "scrollY": '50vh'});
