@@ -24,8 +24,10 @@ and open the template in the editor.
 
         <?php
         include 'connection.php';
-        include 'ADDmember.php';
-        include 'ShowMember.php';
+        include 'modals/addMemberModal.php';
+        include 'modals/deleteMemberModal.php';
+        include 'modals/emailMemberModal.php';
+        include 'modals/showMemberModal.php';
         ?>
 
         <div class="container" id="maincontainer">
@@ -92,21 +94,22 @@ and open the template in the editor.
 
                                 if ($result = mysqli_query($con, $queryleden)) {
                                     while ($row = mysqli_fetch_array($result)) {
-                                        echo "<td>" . $row["Lid_nr"] . "</td>"
-                                        . "<td>" . $row["Email"] . "</td>"
-                                        . "<td>" . $row["Voornaam"] . "</td>"
-                                        . "<td>" . $row["Achternaam"] . "</td>"
-                                        . "<td>" . $row["Tussenvoegsel"] . "</td>"
-                                        . "<td>" . $row["Geslacht"] . "</td>"
-                                        . "<td> </td>"
-                                        . "<td> </td>"
-                                        . "<td>" . $row["Extra_email"] . "</td>"
-                                        . "<td>" . $row["Telefoon"] . "</td>"
-                                        . "<td>" . $row["Mobiel"] . "</td>"
-                                        . "<td>" . $row["Adres"] . "</td>"
-                                        . "<td>" . $row["Woonplaats"] . "</td>"
-                                        . "<td>" . $row["Postcode"] . "</td>"
-                                        . "<td>" . $row["Extra_info"] . "</td>";
+                                        echo PHP_EOL . '            <tr data-id="' . $row["Lid_nr"] . '">' . PHP_EOL;
+                                        echo "                 <td>" . $row["Lid_nr"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Email"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Voornaam"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Achternaam"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Tussenvoegsel"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Geslacht"] . "</td>" . PHP_EOL
+                                        . "                 <td> </td>" . PHP_EOL
+                                        . "                 <td> </td>" . PHP_EOL
+                                        . "                 <td>" . $row["Extra_email"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Telefoon"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Mobiel"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Adres"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Woonplaats"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Postcode"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Extra_info"] . "</td>" . PHP_EOL;
                                         //Donatie info voor deze rij.
                                         // Voor zekerheid als de query niet werkt, komen er 2 lege cellen.
                                         $querybetalingen = "SELECT Datum_donatie, Donatie_kenmerk "
@@ -114,63 +117,64 @@ and open the template in the editor.
                                                 . "WHERE Lid_nr = " . $row["Lid_nr"];
                                         if ($resultDonatie = mysqli_query($con, $querybetalingen)) {
                                             if ($resultDonatie->num_rows === 0) {
-                                                echo "<td> </td>"
-                                                . "<td> </td>";
+                                                echo "                 <td> </td>" . PHP_EOL
+                                                . "                 <td> </td>" . PHP_EOL;
                                             } else {
                                                 while ($row = mysqli_fetch_array($resultDonatie)) {
                                                     if ($row["Datum_donatie"] != 0000 - 00 - 00) {
-                                                        echo "<td>" . $row["Datum_donatie"] . "</td>";
+                                                        echo "                 <td>" . $row["Datum_donatie"] . "</td>" . PHP_EOL;
                                                     } else {
-                                                        echo "<td> </td>";
+                                                        echo "                  <td> </td>" . PHP_EOL;
                                                     }
-                                                    echo "<td>" . $row["Donatie_kenmerk"] . "</td>";
+                                                    echo "                 <td>" . $row["Donatie_kenmerk"] . "</td>". PHP_EOL;
                                                 }
                                             }
                                         } else {
-                                            echo "<td> </td>"
-                                            . "<td> </td>";
+                                            echo "              <td> </td>" . PHP_EOL
+                                            . "                 <td> </td>" . PHP_EOL;
                                         }
-                                        echo "</tr>";
+                                        echo "            </tr>" . PHP_EOL;
                                     }
                                 } else {
                                     
                                 }
                                 if ($result = mysqli_query($con, $queryorganisatie)) {
                                     while ($row = mysqli_fetch_array($result)) {
-                                        echo "<td>" . $row["Lid_nr"] . "</td>"
-                                        . "<td>" . $row["Email"] . "</td>"
-                                        . "<td> </td>"
-                                        . "<td> </td>"
-                                        . "<td> </td>"
-                                        . "<td> </td>"
-                                        . "<td>" . $row["Organisatie_naam"] . "</td>"
-                                        . "<td>" . $row["Contact_persoon"] . "</td>"
-                                        . "<td>" . $row["Extra_email"] . "</td>"
-                                        . "<td>" . $row["Telefoon"] . "</td>"
-                                        . "<td>" . $row["Mobiel"] . "</td>"
-                                        . "<td>" . $row["Adres"] . "</td>"
-                                        . "<td>" . $row["Woonplaats"] . "</td>"
-                                        . "<td>" . $row["Postcode"] . "</td>"
-                                        . "<td>" . $row["Extra_info"] . "</td>";
+                                        echo PHP_EOL . '            <tr data-id="' . $row["Lid_nr"] . '">' . PHP_EOL;
+                                        echo "                 <td>" . $row["Lid_nr"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Email"] . "</td>" . PHP_EOL
+                                        . "                 <td> </td>" . PHP_EOL
+                                        . "                 <td> </td>" . PHP_EOL
+                                        . "                 <td> </td>" . PHP_EOL
+                                        . "                 <td> </td>" . PHP_EOL
+                                        . "                 <td>" . $row["Organisatie_naam"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Contact_persoon"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Extra_email"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Telefoon"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Mobiel"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Adres"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Woonplaats"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Postcode"] . "</td>" . PHP_EOL
+                                        . "                 <td>" . $row["Extra_info"] . "</td>" . PHP_EOL;
 
                                         $querybetalingen = "SELECT Datum_donatie, Donatie_kenmerk "
                                                 . "FROM donaties "
                                                 . "WHERE Lid_nr = " . $row["Lid_nr"];
                                         if ($resultDonatie = mysqli_query($con, $querybetalingen)) {
                                             if ($resultDonatie->num_rows === 0) {
-                                                echo "<td> </td>"
-                                                . "<td> </td>";
+                                                echo "                 <td> </td>" . PHP_EOL
+                                                . "                 <td> </td>" . PHP_EOL;
                                             } else {
                                                 while ($row = mysqli_fetch_array($resultDonatie)) {
-                                                    echo "<td>" . $row["Datum_donatie"] . "</td>"
-                                                    . "<td>" . $row["Donatie_kenmerk"] . "</td>";
+                                                    echo "                 <td>" . $row["Datum_donatie"] . "</td>" . PHP_EOL
+                                                    . "                 <td>" . $row["Donatie_kenmerk"] . "</td>" . PHP_EOL;
                                                 }
                                             }
                                         } else {
-                                            echo "<td>...</td>"
-                                            . "<td>...</td>";
+                                            echo "              <td>...</td>" . PHP_EOL
+                                            . "                 <td>...</td>" . PHP_EOL;
                                         }
-                                        echo "</tr>";
+                                        echo "          </tr>" . PHP_EOL;
                                     }
                                 } else {
                                     
@@ -184,7 +188,7 @@ and open the template in the editor.
                     <div class="col-sm-12" id="mainBTNcontainer">
                         <div class="col-sm-10">
                             <button id="ToevoegenLidModal" name ="ToevoegenLidModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalAdd">Lid Toevoegen</button>
-                            <button id="LidModal" name="LidModal" type="button" class="btn btn-info btn-lg"  data-toggle="modal" data-target="#ModalLid" disabled>Lid informatie</button>
+                            <button id="LidModal" name="LidModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalLid" disabled>Lid informatie</button>
                             <button id="EmailModal" name ="EmailModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalEmail" disabled>Email Lid</button>
                         </div>
                         <div class="col-sm-2">
@@ -192,67 +196,10 @@ and open the template in the editor.
                         </div>
                     </div>
                 </div>
-
-                <!-- Modal voor het versturen van de emails naar de leden -->
-                <div id="ModalEmail" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 class="modal-title">Email Leden</h4>
-                            </div>
-                            <div class="modal-body">
-                                <?php
-                                //hier database informatie ;)
-                                ?>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="submit" class="btn btn-default">Email</button>
-                                <button type="button" class="btn btn-danger" data-dismiss="modal">Sluiten</button>
-                            </div>
-                            <!-- /.modal-footer End -->
-                        </div>
-                        <!-- /.modal-content End -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
-
-                <!-- Modal voor het verwijderen van Leden -->
-                <div id="DeleteMemberModal" class="modal fade" role="dialog">
-                    <div class="modal-dialog">
-                        <!-- Modal content-->
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                                <h4 id="Verwijderleden" class="modal-title">Leden Verwijderen</h4>
-                            </div>
-                            <div class="modal-body">
-                                <div class="col-sm-4">
-                                    <!-- vrije ruimte om de text in het midden te krijgen -->
-                                </div>
-                                <div class="col-sm-6">
-                                    <label class="center-block control-label" id="Verwijderen">Weet u zeker dat u dit lid wilt verwijderen?</label>
-                                </div>
-                            </div>
-                            <form id="DeleteLid" method="post">
-                                <div class="modal-footer">
-                                    <form id="DeletefromDB" method="post">
-                                        <button type="submit" class="btn btn-danger">Ja</button>
-                                        <button type="button" class="btn btn-info" data-dismiss="modal">Nee</button>
-                                </div>
-                            </form>
-                            <!-- /.modal-footer End -->
-                        </div>
-                        <!-- /.modal-content End -->
-                    </div>
-                    <!-- /.modal-dialog -->
-                </div>
-                <!-- /.modal -->
             </div>
         </div>
+        <script src="js/registreer.js"></script>
+        <script src="js/selectieScript.js"></script>
+        <script src="js/showlid.js"></script>
     </body>
-    <script src="js/registreer.js"></script>
-    <script src="js/selectieScript.js"></script>
 </html>
