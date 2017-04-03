@@ -3,9 +3,6 @@ $(document).ready(function () {
     $('#2DB').on('submit', function (e) {
         e.preventDefault();
         
-//        var form_id = getElementById("#2DB");
-//        var form = FormData(form_id);
-        
         //Array for data value to be send to the database
         var data = {
             Voornaam: $('#Voornaam').val(),

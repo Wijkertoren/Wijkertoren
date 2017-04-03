@@ -83,33 +83,33 @@ and open the template in the editor.
                             </tfoot>
                             <tbody>
                                 <?php
-                                $queryleden = "SELECT Lid_nr, Email, Voornaam, Achternaam, Tussenvoegsel, Geslacht, Extra_email, Telefoon, Mobiel, "
+                                $queryleden = "SELECT Lid_nr, lid.Persoon_nr, Email, Voornaam, Achternaam, Tussenvoegsel, Geslacht, Extra_email, Telefoon, Mobiel, "
                                         . "Adres, Woonplaats, Postcode, Extra_info "
                                         . "FROM ledenregister lid, personen p "
                                         . "WHERE lid.Persoon_nr = p.Persoon_nr";
-                                $queryorganisatie = "SELECT Lid_nr, Email, Organisatie_naam, Contact_persoon, Extra_email, Telefoon, Mobiel, "
+                                $queryorganisatie = "SELECT Lid_nr, lid.Organisatie_nr, Email, Organisatie_naam, Contact_persoon, Extra_email, Telefoon, Mobiel, "
                                         . "Adres, Woonplaats, Postcode, Extra_info "
                                         . "FROM ledenregister lid, organisaties org "
                                         . "WHERE lid.Organisatie_nr = org.Organisatie_nr";
 
                                 if ($result = mysqli_query($con, $queryleden)) {
                                     while ($row = mysqli_fetch_array($result)) {
-                                        echo PHP_EOL . '            <tr data-id="' . $row["Lid_nr"] . '">' . PHP_EOL;
-                                        echo "                 <td>" . $row["Lid_nr"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Email"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Voornaam"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Achternaam"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Tussenvoegsel"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Geslacht"] . "</td>" . PHP_EOL
-                                        . "                 <td> </td>" . PHP_EOL
-                                        . "                 <td> </td>" . PHP_EOL
-                                        . "                 <td>" . $row["Extra_email"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Telefoon"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Mobiel"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Adres"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Woonplaats"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Postcode"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Extra_info"] . "</td>" . PHP_EOL;
+                                        echo PHP_EOL . '            <tr data-id="' . $row["Lid_nr"] . '" data-persoonnr="' . $row["Persoon_nr"] . '">' . PHP_EOL;
+                                        echo '                 <td>' . $row["Lid_nr"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Email"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Voornaam"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Achternaam"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Tussenvoegsel"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Geslacht"] . '</td>' . PHP_EOL
+                                        . '                 <td> </td>' . PHP_EOL
+                                        . '                 <td> </td>' . PHP_EOL
+                                        . '                 <td>' . $row["Extra_email"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Telefoon"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Mobiel"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Adres"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Woonplaats"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Postcode"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Extra_info"] . '</td>' . PHP_EOL;
                                         //Donatie info voor deze rij.
                                         // Voor zekerheid als de query niet werkt, komen er 2 lege cellen.
                                         $querybetalingen = "SELECT Datum_donatie, Donatie_kenmerk "
@@ -117,64 +117,64 @@ and open the template in the editor.
                                                 . "WHERE Lid_nr = " . $row["Lid_nr"];
                                         if ($resultDonatie = mysqli_query($con, $querybetalingen)) {
                                             if ($resultDonatie->num_rows === 0) {
-                                                echo "                 <td> </td>" . PHP_EOL
-                                                . "                 <td> </td>" . PHP_EOL;
+                                                echo '                 <td> </td>' . PHP_EOL
+                                                . '                 <td> </td>' . PHP_EOL;
                                             } else {
                                                 while ($row = mysqli_fetch_array($resultDonatie)) {
                                                     if ($row["Datum_donatie"] != 0000 - 00 - 00) {
-                                                        echo "                 <td>" . $row["Datum_donatie"] . "</td>" . PHP_EOL;
+                                                        echo '                 <td>' . $row["Datum_donatie"] . '</td>' . PHP_EOL;
                                                     } else {
-                                                        echo "                  <td> </td>" . PHP_EOL;
+                                                        echo '                  <td> </td>' . PHP_EOL;
                                                     }
-                                                    echo "                 <td>" . $row["Donatie_kenmerk"] . "</td>". PHP_EOL;
+                                                    echo '                 <td>' . $row["Donatie_kenmerk"] . '</td>'. PHP_EOL;
                                                 }
                                             }
                                         } else {
-                                            echo "              <td> </td>" . PHP_EOL
-                                            . "                 <td> </td>" . PHP_EOL;
+                                            echo '              <td> </td>' . PHP_EOL
+                                            . '                 <td> </td>' . PHP_EOL;
                                         }
-                                        echo "            </tr>" . PHP_EOL;
+                                        echo '            </tr>' . PHP_EOL;
                                     }
                                 } else {
                                     
                                 }
                                 if ($result = mysqli_query($con, $queryorganisatie)) {
                                     while ($row = mysqli_fetch_array($result)) {
-                                        echo PHP_EOL . '            <tr data-id="' . $row["Lid_nr"] . '">' . PHP_EOL;
-                                        echo "                 <td>" . $row["Lid_nr"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Email"] . "</td>" . PHP_EOL
-                                        . "                 <td> </td>" . PHP_EOL
-                                        . "                 <td> </td>" . PHP_EOL
-                                        . "                 <td> </td>" . PHP_EOL
-                                        . "                 <td> </td>" . PHP_EOL
-                                        . "                 <td>" . $row["Organisatie_naam"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Contact_persoon"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Extra_email"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Telefoon"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Mobiel"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Adres"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Woonplaats"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Postcode"] . "</td>" . PHP_EOL
-                                        . "                 <td>" . $row["Extra_info"] . "</td>" . PHP_EOL;
+                                        echo PHP_EOL . '            <tr data-id="' . $row["Lid_nr"] . '" data-organisatienr="' . $row["Organisatie_nr"] . '">' . PHP_EOL;
+                                        echo '                 <td>' . $row["Lid_nr"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Email"] . '</td>' . PHP_EOL
+                                        . '                 <td> </td>' . PHP_EOL
+                                        . '                 <td> </td>' . PHP_EOL
+                                        . '                 <td> </td>' . PHP_EOL
+                                        . '                 <td> </td>' . PHP_EOL
+                                        . '                 <td>' . $row["Organisatie_naam"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Contact_persoon"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Extra_email"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Telefoon"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Mobiel"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Adres"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Woonplaats"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Postcode"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Extra_info"] . '</td>' . PHP_EOL;
 
                                         $querybetalingen = "SELECT Datum_donatie, Donatie_kenmerk "
                                                 . "FROM donaties "
                                                 . "WHERE Lid_nr = " . $row["Lid_nr"];
                                         if ($resultDonatie = mysqli_query($con, $querybetalingen)) {
                                             if ($resultDonatie->num_rows === 0) {
-                                                echo "                 <td> </td>" . PHP_EOL
-                                                . "                 <td> </td>" . PHP_EOL;
+                                                echo '                 <td> </td>' . PHP_EOL
+                                                . '                 <td> </td>' . PHP_EOL;
                                             } else {
                                                 while ($row = mysqli_fetch_array($resultDonatie)) {
-                                                    echo "                 <td>" . $row["Datum_donatie"] . "</td>" . PHP_EOL
-                                                    . "                 <td>" . $row["Donatie_kenmerk"] . "</td>" . PHP_EOL;
+                                                    echo '                 <td>' . $row["Datum_donatie"] . '</td>' . PHP_EOL
+                                                    . '                 <td>' . $row["Donatie_kenmerk"] . '</td>' . PHP_EOL;
                                                 }
                                             }
                                         } else {
-                                            echo "              <td>...</td>" . PHP_EOL
-                                            . "                 <td>...</td>" . PHP_EOL;
+                                            echo '              <td>...</td>' . PHP_EOL
+                                            . '                 <td>...</td>' . PHP_EOL;
                                         }
-                                        echo "          </tr>" . PHP_EOL;
+                                        echo '          </tr>' . PHP_EOL;
                                     }
                                 } else {
                                     

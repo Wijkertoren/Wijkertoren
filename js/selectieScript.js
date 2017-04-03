@@ -1,8 +1,13 @@
 $(document).ready(function () {
     //remove data from database button function.
-    $('#DeleteLid').click(function (e) {
+    $('#DeleteLid').on('submit', function (e) {
         e.preventDefault();
-        var data = {lid_ID: $('.selected').data('id')};
+        
+        var data = {
+            lid_ID: $('.selected').data('id'),
+            persoon_ID: $('.selected').data('persoonnr'),
+            organisatie_ID: $('.selected').data('organisatienr')
+        };
 
         /* for(table.row('.selected').data().length in data)
          {
