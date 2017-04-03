@@ -17,7 +17,7 @@
             </div>
             <form id="DeleteLid" method="post">
                 <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger" onclick="number.forEach(test)">Ja</button>
+                        <button type="submit" class="btn btn-danger">Ja</button>
                         <button type="button" class="btn btn-info" data-dismiss="modal">Nee</button>
                 </div>
             </form>

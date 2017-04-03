@@ -24,10 +24,10 @@ and open the template in the editor.
 
         <?php
         include 'connection.php';
-        include 'modals/addMemberModal.php';
-        include 'modals/deleteMemberModal.php';
-        include 'modals/emailMemberModal.php';
-        include 'modals/showMemberModal.php';
+        include 'modals/add.php';
+        include 'modals/delete.php';
+        include 'modals/email.php';
+        include 'modals/show.php';
         ?>
 
         <div class="container" id="maincontainer">

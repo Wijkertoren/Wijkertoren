@@ -5,10 +5,6 @@ $(document).ready(function () {
 
         var data = { lid_ID: $('.selected').data('id') };
         
-        demoP = document.getElementById('test');
-        function test(item, index) {
-            
-        }
         /* for(table.row('.selected').data().length in data)
          {
          
@@ -19,7 +15,8 @@ $(document).ready(function () {
             url: 'DeleteMember.php',
             data: data
         }).done(function (data) {
-
+            alert("verwijdering successvol.");
+            
         });
     });
 
