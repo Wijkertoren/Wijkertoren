@@ -1,10 +1,9 @@
 $(document).ready(function () {
     //remove data from database button function.
-    $('#DeleteLid').on('submit', function (e) {
+    $('#DeleteLid').click(function (e) {
         e.preventDefault();
+        var data = {lid_ID: $('.selected').data('id')};
 
-        var data = { lid_ID: $('.selected').data('id') };
-        
         /* for(table.row('.selected').data().length in data)
          {
          
@@ -15,8 +14,10 @@ $(document).ready(function () {
             url: 'DeleteMember.php',
             data: data
         }).done(function (data) {
-            alert("verwijdering successvol.");
-            
+            $('#DeleteMemberModal').modal('hide');
+            setTimeout(function () {
+                document.location.href = "";
+            }, 500);
         });
     });
 
