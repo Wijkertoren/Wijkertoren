@@ -1,6 +1,6 @@
 <?php
 
-include 'connection.php';
+include '../connection.php';
 //Delete Member Information.
 $Values = new stdClass();
 foreach ($_POST as $key => $value) {

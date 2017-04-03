@@ -11,7 +11,7 @@ $(document).ready(function () {
 
         $.ajax({
             method: "POST",
-            url: 'DeleteMember.php',
+            url: 'script/DeleteMember.php',
             data: data
         }).done(function (data) {
             $('#DeleteMemberModal').modal('hide');
@@ -21,14 +21,21 @@ $(document).ready(function () {
         });
     });
 
-    $('#ShowMember').on('submit', function (e) {
+    $('#ShowMember').click(function (e) {
         e.preventDefault();
+        
+        /*var data = {
+            lid_ID: $('.selected').data('id')
+        };*/
 
         $.ajax({
             method: "POST",
-            url: 'EditMember.php'
+            url: 'script/EditMember.php'
         }).done(function (data) {
-
+            $('#ModalLid').modal('hide');
+            setTimeout(function () {
+                document.location.href = "";
+            }, 500);
         });
     });
     //horizontal Scrolling and vertical Scrolling

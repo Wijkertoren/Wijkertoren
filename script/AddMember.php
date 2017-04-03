@@ -1,6 +1,6 @@
 <?php
 
-include_once 'connection.php';
+include_once '../connection.php';
 //creates an stdClass to view values given below.
 $formValues = new stdClass();
 foreach ($_POST as $key => $value) {

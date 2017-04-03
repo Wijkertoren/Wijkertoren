@@ -28,10 +28,13 @@ $(document).ready(function () {
         //Sends the value of the array above into a list to show.
         $.ajax({
             method: "POST",
-            url: 'EXPORT2Database.php',
+            url: 'script/AddMember.php',
             data: data
         }).done(function (data) {
-            
+            $('#ModalAdd').modal('hide');
+            setTimeout(function () {
+                document.location.href = "";
+            }, 500);
         });
     });
 });

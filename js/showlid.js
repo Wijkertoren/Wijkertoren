@@ -6,10 +6,10 @@ $(document).ready(function () {
         
         $.ajax({
             method: "POST",
-            url: 'ShowMember.php',
+            url: 'script/ShowMember.php',
             data: data
         }).done(function (data) {
-            
+            alert("HOI SHOWLID.js");
         });
     });
 });
