@@ -9,23 +9,25 @@ and open the template in the editor.
         <title>Wijkertoren Ledenregister</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="css/bootstrap.min.css" rel="stylesheet" type="text/css">
+        <link href="css/main.css" rel="stylesheet" type="text/css">
+        <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
         <link href="css/database.css" rel="stylesheet" type="text/css">
-        <link href="css/data-tables-min.css" rel="stylesheet" type="text/css">
+        <link href="css/dataTablesjQuery.css" rel="stylesheet" type="text/css">
     </head>
     <body>
         <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script src="js/jquery-3.2.0.js"></script>
+        <script src="http://malsup.github.com/jquery.form.js"></script> 
         <!-- Include all compiled plugins (below), or include individual files as needed -->
         <script src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" charset="utf8" src="js/data-tables.min.js"></script>
 
         <?php
-        $con = mysqli_connect("localhost", "root", "", "wijkertoren");
-        // Check connection
-        if (mysqli_connect_errno()) {
-            echo "Failed to connect to MySQL: " . mysqli_connect_error();
-        }
+        include 'connection.php';
+        include 'modals/add.php';
+        include 'modals/delete.php';
+        include 'modals/email.php';
+        include 'modals/show.php';
         ?>
 
         <div class="container" id="maincontainer">
@@ -81,211 +83,123 @@ and open the template in the editor.
                             </tfoot>
                             <tbody>
                                 <?php
-                                $queryleden = "SELECT Lid_nr, Email, Voornaam, Achternaam, Tussenvoegsel, Geslacht, Extra_email, Telefoon, Mobiel, "
+                                $queryleden = "SELECT Lid_nr, lid.Persoon_nr, Email, Voornaam, Achternaam, Tussenvoegsel, Geslacht, Extra_email, Telefoon, Mobiel, "
                                         . "Adres, Woonplaats, Postcode, Extra_info "
                                         . "FROM ledenregister lid, personen p "
                                         . "WHERE lid.Persoon_nr = p.Persoon_nr";
-                                $queryorganisatie = "SELECT Lid_nr, Email, Organisatie_naam, Contact_persoon, Extra_email, Telefoon, Mobiel, "
+                                $queryorganisatie = "SELECT Lid_nr, lid.Organisatie_nr, Email, Organisatie_naam, Contact_persoon, Extra_email, Telefoon, Mobiel, "
                                         . "Adres, Woonplaats, Postcode, Extra_info "
                                         . "FROM ledenregister lid, organisaties org "
                                         . "WHERE lid.Organisatie_nr = org.Organisatie_nr";
 
                                 if ($result = mysqli_query($con, $queryleden)) {
                                     while ($row = mysqli_fetch_array($result)) {
-                                        echo "<td>" . $row["Lid_nr"] . "</td>"
-                                        . "<td>" . $row["Email"] . "</td>"
-                                        . "<td>" . $row["Voornaam"] . "</td>"
-                                        . "<td>" . $row["Achternaam"] . "</td>"
-                                        . "<td>" . $row["Tussenvoegsel"] . "</td>"
-                                        . "<td>" . $row["Geslacht"] . "</td>"
-                                        . "<td> </td>"
-                                        . "<td> </td>"
-                                        . "<td>" . $row["Extra_email"] . "</td>"
-                                        . "<td>" . $row["Telefoon"] . "</td>"
-                                        . "<td>" . $row["Mobiel"] . "</td>"
-                                        . "<td>" . $row["Adres"] . "</td>"
-                                        . "<td>" . $row["Woonplaats"] . "</td>"
-                                        . "<td>" . $row["Postcode"] . "</td>"
-                                        . "<td>" . $row["Extra_info"] . "</td>";
+                                        echo PHP_EOL . '            <tr data-id="' . $row["Lid_nr"] . '" data-persoonnr="' . $row["Persoon_nr"] . '">' . PHP_EOL;
+                                        echo '                 <td>' . $row["Lid_nr"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Email"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Voornaam"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Achternaam"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Tussenvoegsel"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Geslacht"] . '</td>' . PHP_EOL
+                                        . '                 <td> </td>' . PHP_EOL
+                                        . '                 <td> </td>' . PHP_EOL
+                                        . '                 <td>' . $row["Extra_email"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Telefoon"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Mobiel"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Adres"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Woonplaats"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Postcode"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Extra_info"] . '</td>' . PHP_EOL;
                                         //Donatie info voor deze rij.
                                         // Voor zekerheid als de query niet werkt, komen er 2 lege cellen.
                                         $querybetalingen = "SELECT Datum_donatie, Donatie_kenmerk "
                                                 . "FROM donaties "
                                                 . "WHERE Lid_nr = " . $row["Lid_nr"];
                                         if ($resultDonatie = mysqli_query($con, $querybetalingen)) {
-                                            while ($row = mysqli_fetch_array($resultDonatie)) {
-                                                echo "<td>" . $row["Datum_donatie"] . "</td>"
-                                                . "<td>" . $row["Donatie_kenmerk"] . "</td>";
+                                            if ($resultDonatie->num_rows === 0) {
+                                                echo '                 <td> </td>' . PHP_EOL
+                                                . '                 <td> </td>' . PHP_EOL;
+                                            } else {
+                                                while ($row = mysqli_fetch_array($resultDonatie)) {
+                                                    if ($row["Datum_donatie"] != 0000 - 00 - 00) {
+                                                        echo '                 <td>' . $row["Datum_donatie"] . '</td>' . PHP_EOL;
+                                                    } else {
+                                                        echo '                  <td> </td>' . PHP_EOL;
+                                                    }
+                                                    echo '                 <td>' . $row["Donatie_kenmerk"] . '</td>'. PHP_EOL;
+                                                }
                                             }
                                         } else {
-                                            echo "<td> </td>"
-                                            . "<td> </td>";
+                                            echo '              <td> </td>' . PHP_EOL
+                                            . '                 <td> </td>' . PHP_EOL;
                                         }
-                                        echo "</tr>";
+                                        echo '            </tr>' . PHP_EOL;
                                     }
                                 } else {
                                     
                                 }
                                 if ($result = mysqli_query($con, $queryorganisatie)) {
                                     while ($row = mysqli_fetch_array($result)) {
-                                        echo "<td>" . $row["Lid_nr"] . "</td>"
-                                        . "<td>" . $row["Email"] . "</td>"
-                                        . "<td> </td>"
-                                        . "<td> </td>"
-                                        . "<td> </td>"
-                                        . "<td> </td>"
-                                        . "<td>" . $row["Organisatie_naam"] . "</td>"
-                                        . "<td>" . $row["Contact_persoon"] . "</td>"
-                                        . "<td>" . $row["Extra_email"] . "</td>"
-                                        . "<td>" . $row["Telefoon"] . "</td>"
-                                        . "<td>" . $row["Mobiel"] . "</td>"
-                                        . "<td>" . $row["Adres"] . "</td>"
-                                        . "<td>" . $row["Woonplaats"] . "</td>"
-                                        . "<td>" . $row["Postcode"] . "</td>"
-                                        . "<td>" . $row["Extra_info"] . "</td>";
+                                        echo PHP_EOL . '            <tr data-id="' . $row["Lid_nr"] . '" data-organisatienr="' . $row["Organisatie_nr"] . '">' . PHP_EOL;
+                                        echo '                 <td>' . $row["Lid_nr"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Email"] . '</td>' . PHP_EOL
+                                        . '                 <td> </td>' . PHP_EOL
+                                        . '                 <td> </td>' . PHP_EOL
+                                        . '                 <td> </td>' . PHP_EOL
+                                        . '                 <td> </td>' . PHP_EOL
+                                        . '                 <td>' . $row["Organisatie_naam"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Contact_persoon"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Extra_email"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Telefoon"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Mobiel"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Adres"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Woonplaats"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Postcode"] . '</td>' . PHP_EOL
+                                        . '                 <td>' . $row["Extra_info"] . '</td>' . PHP_EOL;
 
                                         $querybetalingen = "SELECT Datum_donatie, Donatie_kenmerk "
                                                 . "FROM donaties "
                                                 . "WHERE Lid_nr = " . $row["Lid_nr"];
                                         if ($resultDonatie = mysqli_query($con, $querybetalingen)) {
-                                            while ($row = mysqli_fetch_array($resultDonatie)) {
-                                                echo "<td>" . $row["Datum_donatie"] . "</td>"
-                                                . "<td>" . $row["Donatie_kenmerk"] . "</td>";
+                                            if ($resultDonatie->num_rows === 0) {
+                                                echo '                 <td> </td>' . PHP_EOL
+                                                . '                 <td> </td>' . PHP_EOL;
+                                            } else {
+                                                while ($row = mysqli_fetch_array($resultDonatie)) {
+                                                    echo '                 <td>' . $row["Datum_donatie"] . '</td>' . PHP_EOL
+                                                    . '                 <td>' . $row["Donatie_kenmerk"] . '</td>' . PHP_EOL;
+                                                }
                                             }
                                         } else {
-                                            echo "<td> </td>"
-                                            . "<td> </td>";
+                                            echo '              <td>...</td>' . PHP_EOL
+                                            . '                 <td>...</td>' . PHP_EOL;
                                         }
-                                        echo "</tr>";
+                                        echo '          </tr>' . PHP_EOL;
                                     }
                                 } else {
-                                    echo "There was a problem with the Database or Query";
+                                    
                                 }
                                 ?>
                             </tbody>
                         </table>
                     </div>
-                </div>
-            </div>
-            <!-- Trigger the modal with a button -->
-            <button id="ToevoegenLidModal" name ="ToevoegenLidModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalAdd">Lid Toevoegen</button>
-            <button id="LidModal" name="LidModal" type="button" class="btn btn-info btn-lg"  data-toggle="modal" data-target="#ModalLid" disabled>Lid informatie</button>
-            <button id="EmailModal" name ="EmailModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalEmail" disabled>Email Lid</button>
-            <button id="VerwijderLidModal" name ="VerwijderLidModal" type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#DeleteMemberModal" disabled>Verwijder Lid</button>
-            <!-- Modal -->
-            <div id="ModalLid" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Lid Informatie</h4>
+                    <div class="testing"></div>
+                    <!-- Trigger the modal with a button -->
+                    <div class="col-sm-12" id="mainBTNcontainer">
+                        <div class="col-sm-10">
+                            <button id="ToevoegenLidModal" name ="ToevoegenLidModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalAdd">Lid Toevoegen</button>
+                            <button id="LidModal" name="LidModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalLid" disabled>Lid informatie</button>
+                            <button id="EmailModal" name ="EmailModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalEmail" disabled>Email Lid</button>
                         </div>
-                        <div class="modal-body">
-                            <?php
-                            //hier database informatie ;)
-                            ?>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="ModalEmail" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Email Leden</h4>
-                        </div>
-                        <div class="modal-body">
-                            <?php
-                            //hier database informatie ;)
-                            ?>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="ModalAdd" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Lid Toevoegen</h4>
-                        </div>
-                        <div class="modal-body">
-                            <?php
-                            //hier database informatie ;)
-                            ?>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Sluiten</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="DeleteMemberModal" class="modal fade" role="dialog">
-                <div class="modal-dialog">
-                    <!-- Modal content-->
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 id="Verwijderleden" class="modal-title">Leden Verwijderen</h4>
-                        </div>
-                        <div class="modal-body">
-                            <p id="Verwijderen">Weet u zeker dat u dit lid wilt verwijderen?<p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Ja</button>
-                            <button type="button" class="btn btn-info" data-dismiss="modal">Nee</button>
+                        <div class="col-sm-2">
+                            <button id="VerwijderLidModal" name ="VerwijderLidModal" type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#DeleteMemberModal" disabled>Verwijder Lid</button>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <script src="js/registreer.js"></script>
+        <script src="js/selectieScript.js"></script>
+        <script src="js/showlid.js"></script>
     </body>
-    <script>
-        $(document).ready(function () {
-            //horizontal Scrolling
-            $('#example').DataTable({"scrollX": true});
-            var table = $('#example').DataTable();
-
-            //Function for selecting which buttons will be Activated and disabled.
-            $('#example tbody').on('click', 'tr', function () {
-                if ($(this).hasClass('selected')) {
-                    $(this).removeClass('selected');
-                } else {
-                    $(this).addClass('selected');
-                }
-                var count = $('#example').find("tr.selected").length;
-                if (count <= 1) {
-                    $("#EmailModal").text("Email Lid");
-                    $("#VerwijderLidModal").text("Verwijder Lid");
-                    $("#Verwijderen").text("Weet u zeker dat u dit lid wilt verwijderen?");
-                    $("#Verwijderleden").text("Lid Verwijderen");
-                } else {
-                    $("#EmailModal").text("Email Leden");
-                    $("#VerwijderLidModal").text("Verwijder Leden");
-                    $("#Verwijderen").text("Weet u zeker dat u deze leden wilt verwijderen?");
-                    $("#Verwijderleden").text("Leden Verwijderen");
-                }
-                $("#LidModal").attr("disabled", $('#example').find("tr.selected").length != 1);
-                $("#EmailModal").attr("disabled", $('#example').find("tr.selected").length == 0);
-                $("#VerwijderLidModal").attr("disabled", $('#example').find("tr.selected").length == 0);
-            });
-
-            $('#button').click(function () {
-
-            });
-        });
-    </script>
 </html>
