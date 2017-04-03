@@ -2,23 +2,35 @@ $(document).ready(function () {
     //remove data from database button function.
     $('#DeleteLid').on('submit', function (e) {
         e.preventDefault();
+
+        var data = { lid_ID: $('.selected').data('id') };
         
+        demoP = document.getElementById('test');
+        function test(item, index) {
+            
+        }
+        /* for(table.row('.selected').data().length in data)
+         {
+         
+         }*/
+
         $.ajax({
             method: "POST",
-            url: 'DeleteMember.php'
+            url: 'DeleteMember.php',
+            data: data
         }).done(function (data) {
-            
+
         });
     });
-    
+
     $('#ShowMember').on('submit', function (e) {
         e.preventDefault();
-        
+
         $.ajax({
             method: "POST",
             url: 'EditMember.php'
         }).done(function (data) {
-            
+
         });
     });
     //horizontal Scrolling and vertical Scrolling
