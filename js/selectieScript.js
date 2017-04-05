@@ -26,7 +26,7 @@ $(document).ready(function () {
         });
     });
 
-    $('#ShowMember').click(function (e) {
+    $('#ShowMember').on('submit', function (e) {
         e.preventDefault();
         
         /*var data = {
