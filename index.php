@@ -187,9 +187,17 @@ and open the template in the editor.
                     <!-- Trigger the modal with a button -->
                     <div class="col-sm-12" id="mainBTNcontainer">
                         <div class="col-sm-10">
+                            <!-- Button opening the modal for adding Members. -->
                             <button id="ToevoegenLidModal" name ="ToevoegenLidModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalAdd">Lid Toevoegen</button>
+                            <!-- /.Button opening the modal for adding Members. -->
+
+                            <!-- Button opening the modal for showing Member information. -->
                             <button id="LidModal" name="LidModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalLid" disabled>Lid informatie</button>
+                            <!-- /.Button opening the modal for showing Member information. -->
+
+                            <!-- Button opening the modal for emailing Members. -->
                             <button id="EmailModal" name ="EmailModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalEmail" disabled>Email Lid</button>
+                            <!-- /.Button opening the modal for emailing Members. -->
                         </div>
                         <div class="col-sm-2">
                             <button id="VerwijderLidModal" name ="VerwijderLidModal" type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#DeleteMemberModal" disabled>Verwijder Lid</button>
