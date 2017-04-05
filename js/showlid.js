@@ -9,7 +9,7 @@ $(document).ready(function () {
             url: 'script/ShowMember.php',
             data: data
         }).done(function (data) {
-            alert("HOI SHOWLID.js");
+
         });
     });
 });
