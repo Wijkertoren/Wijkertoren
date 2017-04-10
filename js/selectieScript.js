@@ -2,12 +2,26 @@ $(document).ready(function () {
     //remove data from database button function.
     $('#DeleteLid').on('submit', function (e) {
         e.preventDefault();
-        
-        var data = {
-            lid_ID: $('.selected').data('id'),
-            persoon_ID: $('.selected').data('persoonnr'),
-            organisatie_ID: $('.selected').data('organisatienr')
-        };
+
+        var data = [];
+
+        var countarr = $('#example').find("tr.selected").length;
+
+        $( "#example" ).find("tr.selected").each(function() {
+            alert( $( this ).data('id') + " ");
+            var obj = [{
+                "lid_ID": $('.selected').data('id')
+                // persoon_ID: $('.selected').data('persoonnr'),
+                // organisatie_ID: $('.selected').data('organisatienr')
+            }]
+            data.push({"lid_ID": "lid_ID", "value": $(this).data('id')});
+
+        });
+
+        for (var i = 0; i < countarr; i++) {
+
+        }
+        alert(countarr);
 
         /* for(table.row('.selected').data().length in data)
          {
@@ -19,16 +33,17 @@ $(document).ready(function () {
             url: 'script/DeleteMember.php',
             data: data
         }).done(function (data) {
-            $('#DeleteMemberModal').modal('hide');
-            setTimeout(function () {
-                document.location.href = "";
-            }, 500);
+            /*$('#DeleteMemberModal').modal('hide');
+             setTimeout(function () {
+             document.location.href = "";
+             }, 500);*/
+            //alert(data);
         });
     });
 
     $('#ShowMember').on('submit', function (e) {
         e.preventDefault();
-        
+
         var data = {
             lid_ID: $('.selected').data('id')
         };
