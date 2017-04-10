@@ -11,7 +11,7 @@ $(document).ready(function () {
 
         /* for(table.row('.selected').data().length in data)
          {
-         
+
          }*/
 
         $.ajax({
@@ -29,9 +29,9 @@ $(document).ready(function () {
     $('#ShowMember').on('submit', function (e) {
         e.preventDefault();
         
-        /*var data = {
+        var data = {
             lid_ID: $('.selected').data('id')
-        };*/
+        };
 
         $.ajax({
             method: "POST",
