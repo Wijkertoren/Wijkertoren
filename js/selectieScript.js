@@ -11,13 +11,11 @@ $(document).ready(function () {
             //alert( $( this ).data('id') + " ");
             var obj = [{
                 "lid_ID": $('.selected').data('id')
-                // persoon_ID: $('.selected').data('persoonnr'),
-                // organisatie_ID: $('.selected').data('organisatienr')
             }]
-            //data.push({"lid_ID": obj , "value": $(this).data('id')});
             data.push({"LID_ID": $(this).data('id')});
 
         });
+        //ajax script voor doorsturen naar het database.
         $.ajax({
             method: "POST",
             url: 'script/DeleteMember.php',
@@ -25,20 +23,16 @@ $(document).ready(function () {
             dataType: 'json',
             contentType: "application/json; charset=utf-8",
             success: function (data) {
+                //automatische herlaad script.
                 $('#DeleteMemberModal').modal('hide');
                 setTimeout(function () {
                     document.location.href = "";
                 }, 250);
             }
         });
-        //alert(countarr);
-
-        /* for(table.row('.selected').data().length in data)
-         {
-
-         }*/
     });
 
+    //Dit stuk triggered het bewerken van een lid nadat er op de knop "bewerken" is geklikt.
     $('#ShowMember').on('submit', function (e) {
         e.preventDefault();
 
@@ -60,17 +54,18 @@ $(document).ready(function () {
     $('#example').DataTable({"scrollX": true, "scrollY": '50vh'});
     var table = $('#example').DataTable();
 
-    //Resets all the elements in the Modal to empty again.
+    //Resets alle elementen in het Modal zodat deze leeg zijn.
     $('.modal').on('hidden.bs.modal', function () {
         $(this).find('form')[0].reset();
     });
-    //Function for selecting which buttons will be Activated and disabled. / Functie voor het selecteren in het ledenregister en welke button er klikbaar word en welke niet.
+    //Functie voor het selecteren in het ledenregister en welke button er klikbaar word en welke niet.
     $('#example tbody').on('click', 'tr', function () {
         if ($(this).hasClass('selected')) {
             $(this).removeClass('selected');
         } else {
             $(this).addClass('selected');
         }
+        //kijkt hoeveel leden zijn geselecteerd voor meervoud van de buttons en text voor de modals.
         var count = $('#example').find("tr.selected").length;
         if (count <= 1) {
             $("#EmailModal").text("Email Lid");

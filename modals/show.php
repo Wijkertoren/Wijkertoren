@@ -1,4 +1,3 @@
-
 <!-- Modal voor het informatie scherm van een Lid -->
 <div id="ModalLid" class="modal fade" role="dialog">
     <div class="modal-dialog">
