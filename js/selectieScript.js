@@ -8,37 +8,35 @@ $(document).ready(function () {
         var countarr = $('#example').find("tr.selected").length;
 
         $( "#example" ).find("tr.selected").each(function() {
-            alert( $( this ).data('id') + " ");
+            //alert( $( this ).data('id') + " ");
             var obj = [{
                 "lid_ID": $('.selected').data('id')
                 // persoon_ID: $('.selected').data('persoonnr'),
                 // organisatie_ID: $('.selected').data('organisatienr')
             }]
-            data.push({"lid_ID": "lid_ID", "value": $(this).data('id')});
+            //data.push({"lid_ID": obj , "value": $(this).data('id')});
+            data.push({"LID_ID": $(this).data('id')});
 
         });
-
-        for (var i = 0; i < countarr; i++) {
-
-        }
-        alert(countarr);
+        $.ajax({
+            method: "POST",
+            url: 'script/DeleteMember.php',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            contentType: "application/json; charset=utf-8",
+            success: function (data) {
+                $('#DeleteMemberModal').modal('hide');
+                setTimeout(function () {
+                    document.location.href = "";
+                }, 250);
+            }
+        });
+        //alert(countarr);
 
         /* for(table.row('.selected').data().length in data)
          {
 
          }*/
-
-        $.ajax({
-            method: "POST",
-            url: 'script/DeleteMember.php',
-            data: data
-        }).done(function (data) {
-            /*$('#DeleteMemberModal').modal('hide');
-             setTimeout(function () {
-             document.location.href = "";
-             }, 500);*/
-            //alert(data);
-        });
     });
 
     $('#ShowMember').on('submit', function (e) {
