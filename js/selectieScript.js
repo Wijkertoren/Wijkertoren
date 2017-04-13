@@ -33,7 +33,7 @@ $(document).ready(function () {
     });
 
     //Dit stuk triggered het bewerken van een lid nadat er op de knop "bewerken" is geklikt.
-    $('#ShowMember').on('submit', function (e) {
+    $('#EditMember').on('submit', function (e) {
         e.preventDefault();
 
         var data = {
@@ -44,10 +44,10 @@ $(document).ready(function () {
             method: "POST",
             url: 'script/EditMember.php'
         }).done(function (data) {
-            $('#ModalLid').modal('hide');
+            /*$('#ModalLid').modal('hide');
             setTimeout(function () {
                 document.location.href = "";
-            }, 500);
+            }, 500);*/
         });
     });
     //horizontal Scrolling and vertical Scrolling

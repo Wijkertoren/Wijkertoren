@@ -7,97 +7,97 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                 <h4 class="modal-title">Lid Informatie</h4>
             </div>
-            <form id="ShowMember" method="post">
+            <form id="EditMember" method="post">
             <div class="modal-body">
                 <!-- Hier komt de informatie vanuit de DB te zien. -->
                 <div class="form-group col-sm-6">
                     <label for="Voornaam" class="col-sm-4 control-label">Voornaam</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="VoornaamFromDB" value="Voornaam...">
+                        <input type="text" class="form-control" id="VoornaamFromDB" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="Achternaam" class="col-sm-4 control-label">Achternaam</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="AchternaamFromDB" value="Achternaam...">
+                        <input type="text" class="form-control" id="AchternaamFromDB" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="Tussenvoegsel" class="col-sm-4 control-label">Tussenvoegsel</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="TussenvoegselFromDB" value="Tussenvoegsel...">
+                        <input type="text" class="form-control" id="TussenvoegselFromDB" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="Geslacht" class="col-sm-4 control-label">Geslacht</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="GeslachtFromDB" value="Geslacht...">
+                        <input type="text" class="form-control" id="GeslachtFromDB" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="Organisatie" class="col-sm-4 control-label">Organisatie</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="OrganisatieFromDB" value="Organisatie...">
+                        <input type="text" class="form-control" id="OrganisatieFromDB" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="ContactPersoon" class="col-sm-4 control-label">Contact Persoon</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="Contact_persoonFromDB" value="Contact Persoon...">
+                        <input type="text" class="form-control" id="Contact_persoonFromDB" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="Email" class="col-sm-4 control-label">Email</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="EmailFromDB" value="Email...">
+                        <input type="text" class="form-control" id="EmailFromDB" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="ExtraEmail" class="col-sm-4 control-label">Extra Email</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="Extra_emailFromDB" value="Extra Email...">
+                        <input type="text" class="form-control" id="Extra_emailFromDB" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="Telefoon" class="col-sm-4 control-label">Telefoon</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="TelefoonFromDB" value="Telefoon...">
+                        <input type="text" class="form-control" id="TelefoonFromDB" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="Mobiel" class="col-sm-4 control-label">Mobiel</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="MobielFromDB" value="Mobiel...">
+                        <input type="text" class="form-control" id="MobielFromDB" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="Adres" class="col-sm-4 control-label">Adres</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="AdresFromDB" value="Adres...">
+                        <input type="text" class="form-control" id="AdresFromDB" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="Woonplaats" class="col-sm-4 control-label">Woonplaats</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="WoonplaatsFromDB" value="Woonplaats...">
+                        <input type="text" class="form-control" id="WoonplaatsFromDB" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="Postcode" class="col-sm-4 control-label">Postcode</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="PostcodeFromDB" value="Postcode...">
+                        <input type="text" class="form-control" id="PostcodeFromDB" value="">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
-                    <label for="ExtraInfo" class="col-sm-4 control-label">Extra Info</label>
+                    <label for="ExtraInfo" class="col-sm-4 control-label">Zoekterm(en)</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="Extra_infoFromDB" value="Extra Info...">
+                        <input type="text" class="form-control" id="ZoektermenFromDB" placeholder="">
                     </div>
                 </div>
                 <div class="form-group col-sm-6">
                     <label for="Donatie" class="col-sm-4 control-label">Donatie Kenmerk</label>
                     <div class="col-sm-8">
-                        <input type="text" class="form-control" id="Donatie_kenmerkFromDB" value="Donatie Kenmerk...">
+                        <input type="text" class="form-control" id="Donatie_kenmerkFromDB" value="">
                     </div>
                 </div>
             </div>
