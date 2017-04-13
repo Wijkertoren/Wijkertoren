@@ -94,7 +94,7 @@ include 'modals/show.php';
 
                     if ($result = mysqli_query($con, $queryleden)) {
                         while ($row = mysqli_fetch_array($result)) {
-                            echo PHP_EOL . '            <tr data-organisatienr="0" data-id="' . $row["Lid_nr"] . '" data-persoonnr="' . $row["Persoon_nr"] . '">' . PHP_EOL;
+                            echo PHP_EOL . '            <tr data-id="' . $row["Lid_nr"] . '" data-persoonnr="' . $row["Persoon_nr"] . '">' . PHP_EOL;
                             echo '                 <td>' . $row["Lid_nr"] . '</td>' . PHP_EOL
                                 . '                 <td>' . $row["Email"] . '</td>' . PHP_EOL
                                 . '                 <td>' . $row["Voornaam"] . '</td>' . PHP_EOL
@@ -140,7 +140,7 @@ include 'modals/show.php';
                     }
                     if ($result = mysqli_query($con, $queryorganisatie)) {
                         while ($row = mysqli_fetch_array($result)) {
-                            echo PHP_EOL . '            <tr data-persoonnr="0" data-id="' . $row["Lid_nr"] . '" data-organisatienr="' . $row["Organisatie_nr"] . '">' . PHP_EOL;
+                            echo PHP_EOL . '            <tr data-id="' . $row["Lid_nr"] . '" data-organisatienr="' . $row["Organisatie_nr"] . '">' . PHP_EOL;
                             echo '                 <td>' . $row["Lid_nr"] . '</td>' . PHP_EOL
                                 . '                 <td>' . $row["Email"] . '</td>' . PHP_EOL
                                 . '                 <td> </td>' . PHP_EOL
