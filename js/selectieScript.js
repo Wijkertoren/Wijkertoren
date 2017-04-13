@@ -8,12 +8,11 @@ $(document).ready(function () {
         var countarr = $('#example').find("tr.selected").length;
 
         $( "#example" ).find("tr.selected").each(function() {
-            alert( $( this ).data('id') + " ");
+            //alert( $( this ).data('id') + " ");
             var obj = [{
                 "lid_ID": $('.selected').data('id')
             }]
             data.push({"LID_ID": $(this).data('id')});
-            console.log(data);
         });
         //ajax script voor doorsturen naar het database.
         $.ajax({

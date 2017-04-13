@@ -19,22 +19,31 @@ $(document).ready(function () {
             data: data
         }).done(function (test) {
             var Array = test;
-
-            $('#VoornaamFromDB').val(Array["Voornaam"]);
-            $('#AchternaamFromDB').val(Array["Achternaam"]);
-            $('#TussenvoegselFromDB').val(Array["Tussenvoegsel"]);
-            $('#GeslachtFromDB').val(Array["Geslacht"]);
-            $('#OrganisatieFromDB').val(Array["Organisatie_naam"]);
-            $('#Contact_persoonFromDB').val(Array["Contact_persoon"]);
-            $('#EmailFromDB').val(Array["Email"]);
-            $('#Extra_emailFromDB').val(Array["Extra_email"]);
-            $('#TelefoonFromDB').val(Array["Telefoon"]);
-            $('#MobielFromDB').val(Array["Mobiel"]);
-            $('#AdresFromDB').val(Array["Adres"]);
-            $('#WoonplaatsFromDB').val(Array["Woonplaats"]);
-            $('#PostcodeFromDB').val(Array["Postcode"]);
-            $('#ZoektermenFromDB').val(Array["Extra_info"]);
-            $('#Donatie_kenmerkFromDBa').val(Array["Donatie_kenmerk"]);
+            if (Array["Voornaam"] && Array["Achternaam"] != ""){
+                $('#VoornaamFromDB').val(Array["Voornaam"]);
+                $('#AchternaamFromDB').val(Array["Achternaam"]);
+                $('#TussenvoegselFromDB').val(Array["Tussenvoegsel"]);
+                $('#GeslachtFromDB').val(Array["Geslacht"]);
+                $('#EmailFromDB').val(Array["Email"]);
+                $('#Extra_emailFromDB').val(Array["Extra_email"]);
+                $('#TelefoonFromDB').val(Array["Telefoon"]);
+                $('#MobielFromDB').val(Array["Mobiel"]);
+                $('#AdresFromDB').val(Array["Adres"]);
+                $('#WoonplaatsFromDB').val(Array["Woonplaats"]);
+                $('#PostcodeFromDB').val(Array["Postcode"]);
+                $('#ZoektermenFromDB').val(Array["Extra_info"]);
+            } else {
+                $('#OrganisatieFromDB').val(Array["Organisatie_naam"]);
+                $('#Contact_persoonFromDB').val(Array["Contact_persoon"]);
+                $('#EmailFromDB').val(Array["Email"]);
+                $('#Extra_emailFromDB').val(Array["Extra_email"]);
+                $('#TelefoonFromDB').val(Array["Telefoon"]);
+                $('#MobielFromDB').val(Array["Mobiel"]);
+                $('#AdresFromDB').val(Array["Adres"]);
+                $('#WoonplaatsFromDB').val(Array["Woonplaats"]);
+                $('#PostcodeFromDB').val(Array["Postcode"]);
+                $('#ZoektermenFromDB').val(Array["Extra_info"]);
+            }
         });
     });
 });

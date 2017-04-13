@@ -94,12 +94,6 @@
                         <input type="text" class="form-control" id="ZoektermenFromDB" placeholder="">
                     </div>
                 </div>
-                <div class="form-group col-sm-6">
-                    <label for="Donatie" class="col-sm-4 control-label">Donatie Kenmerk</label>
-                    <div class="col-sm-8">
-                        <input type="text" class="form-control" id="Donatie_kenmerkFromDB" value="">
-                    </div>
-                </div>
             </div>
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-default">Bewerken</button>

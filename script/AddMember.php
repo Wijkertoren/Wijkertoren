@@ -80,12 +80,9 @@ function InsertINTOledenregister($con, $lastIDPersoon, $lastIDOrganisatie) {
     $persoonsnr = $lastIDPersoon;
     $organisatienr = $lastIDOrganisatie;
 
-    var_dump($lastIDPersoon);
-
     $stmt->execute();
 
     $lastIDLid = $stmt->insert_id;
-
     $stmt->close();
     return $lastIDLid;
 }
@@ -97,7 +94,7 @@ function InsertINTOdonaties($con, $lastIDLid) {
 
 
     $stmt = $con->prepare("INSERT INTO donaties(Lid_nr, Donatie_kenmerk)VALUES(?,?)");
-    $stmt->bind_param("ss", $lastIDLid, $donatiekenmerk);
+    $stmt->bind_param("is", $lastIDLid, $donatiekenmerk);
 
 
     $stmt->execute();
