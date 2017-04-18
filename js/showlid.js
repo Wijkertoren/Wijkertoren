@@ -32,6 +32,7 @@ $(document).ready(function () {
                 $('#WoonplaatsFromDB').val(Array["Woonplaats"]);
                 $('#PostcodeFromDB').val(Array["Postcode"]);
                 $('#ZoektermenFromDB').val(Array["Extra_info"]);
+                $('#Extra_InfoFromDB').val(Array["Eigenschappen"]);
             } else {
                 $('#OrganisatieFromDB').val(Array["Organisatie_naam"]);
                 $('#Contact_persoonFromDB').val(Array["Contact_persoon"]);
@@ -43,6 +44,7 @@ $(document).ready(function () {
                 $('#WoonplaatsFromDB').val(Array["Woonplaats"]);
                 $('#PostcodeFromDB').val(Array["Postcode"]);
                 $('#ZoektermenFromDB').val(Array["Extra_info"]);
+                $('#Extra_InfoFromDB').val(Array["Eigenschappen"]);
             }
         });
     });

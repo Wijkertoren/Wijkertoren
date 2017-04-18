@@ -41,7 +41,7 @@ include 'modals/show.php';
             <div class="slide-1"></div>
             <div class="hero">
                 <hgroup>
-                    <h1>LedenRegister 3.0</h1>
+                    <h1>LedenRegister Wijkertoren</h1>
                 </hgroup>
             </div>
         </div>
@@ -49,7 +49,7 @@ include 'modals/show.php';
             <div class="slide-2"></div>
             <div class="hero">
                 <hgroup>
-                    <h1>LedenRegister 3.0</h1>
+                    <h1>LedenRegister Wijkertoren</h1>
                 </hgroup>
             </div>
         </div>
@@ -57,7 +57,7 @@ include 'modals/show.php';
             <div class="slide-3"></div>
             <div class="hero">
                 <hgroup>
-                    <h1>LedenRegister 3.0</h1>
+                    <h1>LedenRegister Wijkertoren</h1>
                 </hgroup>
             </div>
         </div>

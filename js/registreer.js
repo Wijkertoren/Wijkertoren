@@ -18,7 +18,8 @@ $(document).ready(function () {
             Adres: $('#Adres').val(),
             Woonplaats: $('#Woonplaats').val(),
             Postcode: $('#Postcode').val(),
-            ExtraInfo: $('#Extra_info').val(),
+            ZoekTerm: $('#Zoekterm').val(),
+            Eigenschappen: $('#Extra_info').val(),
             DonatieKenmerk: $('#Donatie_kenmerk').val()
         };
 
