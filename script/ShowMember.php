@@ -15,7 +15,7 @@ $lid_id = $decodeJSON->{'lid_ID'};
 $persoon_id = $decodeJSON->{"persoon_ID"};
 $organisatie_id = $decodeJSON->{"organisatie_ID"};
 
-if($persoon_id   > 0) {
+if($persoon_id > 0) {
 
     $queryselectedLid = "SELECT p.Voornaam, p.Achternaam, p.Tussenvoegsel, p.Geslacht, lid.Email, lid.Extra_email, lid.Telefoon, lid.Mobiel, "
         . "lid.Adres, lid.Woonplaats, lid.Postcode, lid.Extra_info "

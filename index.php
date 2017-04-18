@@ -10,6 +10,7 @@ and open the template in the editor.
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="css/main.css" rel="stylesheet" type="text/css">
+    <link href="css/heroheader.css" rel="stylesheet" type="text/css">
     <link href="css/bootstrap.css" rel="stylesheet" type="text/css">
     <link href="css/database.css" rel="stylesheet" type="text/css">
     <link href="css/dataTablesjQuery.css" rel="stylesheet" type="text/css">
@@ -30,11 +31,45 @@ include 'modals/email.php';
 include 'modals/show.php';
 ?>
 
+<div class="carousel fade-carousel slide" data-interval="10000" data-ride="carousel" id="bs-carousel">
+    <!-- Overlay -->
+    <div class="overlay"></div>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner">
+        <div class="item slides active">
+            <div class="slide-1"></div>
+            <div class="hero">
+                <hgroup>
+                    <h1>LedenRegister 3.0</h1>
+                </hgroup>
+            </div>
+        </div>
+        <div class="item slides">
+            <div class="slide-2"></div>
+            <div class="hero">
+                <hgroup>
+                    <h1>LedenRegister 3.0</h1>
+                </hgroup>
+            </div>
+        </div>
+        <div class="item slides">
+            <div class="slide-3"></div>
+            <div class="hero">
+                <hgroup>
+                    <h1>LedenRegister 3.0</h1>
+                </hgroup>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container" id="maincontainer">
     <div class="panel">
-        <div class="panel-heading">
+        <!--<div class="panel-heading">
             <h1>LedenRegister 2.0</h1>
-        </div>
+        </div>-->
+
         <div class="panel-body">
             <div class="row">
                 <table id="example" class="display compact" cellspacing="10" width="100%">
@@ -186,7 +221,7 @@ include 'modals/show.php';
             <div class="testing"></div>
             <!-- Trigger the modal with a button -->
             <div class="col-sm-12" id="mainBTNcontainer">
-                <div class="col-sm-10">
+                <div class="col-sm-9">
                     <!-- Button opening the modal for adding Members. -->
                     <button id="ToevoegenLidModal" name="ToevoegenLidModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalAdd">Lid Toevoegen</button>
                     <!-- /.Button opening the modal for adding Members. -->
@@ -199,7 +234,7 @@ include 'modals/show.php';
                     <button id="EmailModal" name="EmailModal" type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#ModalEmail" disabled>Email Lid</button>
                     <!-- /.Button opening the modal for emailing Members. -->
                 </div>
-                <div class="col-sm-2">
+                <div class="col-sm-1">
                     <!-- Button opening the modal for deleting Members. -->
                     <button id="VerwijderLidModal" name="VerwijderLidModal" type="button" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#DeleteMemberModal" disabled>Verwijder Lid</button>
                     <!-- /.Button opening the modal for deleting Members. -->
