@@ -40,7 +40,7 @@
     transform: translate3d(-50%,-50%,0);
 }
 .hero h1 {
-    font-size: 6em;
+    font-size: 4em;
     font-weight: bold;
     margin: 0;
     padding: 0;
@@ -117,5 +117,5 @@
     .hero { width: 980px; }
 }
 @media screen and (max-width: 640px){
-    .hero h1 { font-size: 4em; }
+    .hero h1 { font-size: 2em; }
 }
