@@ -14,6 +14,23 @@ foreach ($decodeJSON as $key => $value) {
 function DeleteFROMledenregister($con, $id)
 {
 //    $stmt = $con->prepare("DELETE lid.*, p.*, d.* FROM ledenregister lid RIGHT JOIN donaties d ON lid.Lid_nr = d.Lid_nr LEFT JOIN personen p ON p.Persoon_nr = lid.Persoon_nr WHERE lid.Lid_nr = (?) AND lid.Organisatie_nr IS NULL");
+
+
+    $stmt = $con->prepare("DELETE FROM personen where persoon_nr = (SELECT persoon_nr FROM ledenregister where lid_nr=(?))");
+    $stmt->bind_param("s", $id);
+
+    $stmt->execute();
+
+    $stmt = $con->prepare("DELETE FROM organisaties where organisatie_nr = (SELECT organisatie_nr FROM ledenregister where lid_nr=(?))");
+    $stmt->bind_param("s", $id);
+
+    $stmt->execute();
+
+    $stmt = $con->prepare("DELETE FROM donaties where lid_nr=(?)");
+    $stmt->bind_param("s", $id);
+
+    $stmt->execute();
+
     $stmt = $con->prepare("DELETE FROM ledenregister WHERE Lid_nr = (?)");
     $stmt->bind_param("s", $id);
 
