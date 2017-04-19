@@ -88,9 +88,15 @@
                         </div>
                     </div>
                     <div class="form-group col-sm-6">
+                        <label for="ExtraInfo" class="col-sm-4 control-label">Zoekterm(en)</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" id="Zoekterm" placeholder="Zoekterm(en)...">
+                        </div>
+                    </div>
+                    <div class="form-group col-sm-6">
                         <label for="ExtraInfo" class="col-sm-4 control-label">Extra Info</label>
                         <div class="col-sm-8">
-                            <input type="text" class="form-control" id="Extra_info" placeholder="Extra Info...">
+                            <textarea type="text" class="form-control" id="Extra_info" placeholder="Extra Informatie...."></textarea>
                         </div>
                     </div>
                     <div class="form-group col-sm-6">

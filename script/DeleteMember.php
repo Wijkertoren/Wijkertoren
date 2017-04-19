@@ -1,65 +1,47 @@
 <?php
-
 include '../connection.php';
 //Delete Member Information.
-$Values = new stdClass();
-foreach ($_POST as $key => $value) {
-    //creates variable that loops through the $_POST to get the data.
-    $Values->$key = $value;
 
-    //encodes the value.
-    $encodeValues = json_encode($Values);
+// Decode array die binnen komt
+$decodeJSON = json_decode(file_get_contents('php://input'), true);
+
+// Loop door input array heen
+foreach ($decodeJSON as $key => $value) {
+    // Roep voor ieder object in de array de functie aan om ze te verwijderen
+    DeleteFROMledenregister($con, $value["LID_ID"]);
 }
-echo $encodeValues;
-$decodeJSON = json_decode($encodeValues);
 
-//Delete script
-function DeleteFROMpersonen($con) {
-    global $decodeJSON;
-    // prepare and bind
-    $stmt = $con->prepare("DELETE FROM personen WHERE Persoon_nr = (?)");
-    $stmt->bind_param("s", $persoonnr);
-    // set parameters and execute
-    $persoonnr = $decodeJSON->{'persoon_ID'};
+function DeleteFROMledenregister($con, $id)
+{
+//    $stmt = $con->prepare("DELETE lid.*, p.*, d.* FROM ledenregister lid RIGHT JOIN donaties d ON lid.Lid_nr = d.Lid_nr LEFT JOIN personen p ON p.Persoon_nr = lid.Persoon_nr WHERE lid.Lid_nr = (?) AND lid.Organisatie_nr IS NULL");
+
+
+    $stmt = $con->prepare("DELETE FROM personen where persoon_nr = (SELECT persoon_nr FROM ledenregister where lid_nr=(?))");
+    $stmt->bind_param("s", $id);
 
     $stmt->execute();
 
-    $stmt->close();
-}
+    $stmt = $con->prepare("DELETE FROM organisaties where organisatie_nr = (SELECT organisatie_nr FROM ledenregister where lid_nr=(?))");
+    $stmt->bind_param("s", $id);
 
-function DeleteFROMledenregister($con) {
-    global $decodeJSON;
+    $stmt->execute();
 
-    // prepare and bind
+    $stmt = $con->prepare("DELETE FROM donaties where lid_nr=(?)");
+    $stmt->bind_param("s", $id);
+
+    $stmt->execute();
+
     $stmt = $con->prepare("DELETE FROM ledenregister WHERE Lid_nr = (?)");
-    $stmt->bind_param("s", $lid_ID);
-    // set parameters and execute
-    $lid_ID = $decodeJSON->{'lid_ID'};
-
+    $stmt->bind_param("s", $id);
 
     $stmt->execute();
-
     $stmt->close();
+//
+//    $stmt = $con->prepare("DELETE lid.*, o.*, d.* FROM ledenregister lid RIGHT JOIN donaties d ON lid.Lid_nr = d.Lid_nr LEFT JOIN organisaties o ON o.Organisatie_nr = lid.Organisatie_nr WHERE lid.Lid_nr = (?) AND lid.Persoon_nr IS NULL");
+//    $stmt->bind_param("s", $id);
+//
+//    $stmt->execute();
+//    $stmt->close();
 }
 
-function DeleteFROMorganisaties($con) {
-    global $decodeJSON;
-
-    $stmt = $con->prepare("DELETE FROM organisaties WHERE Organisatie_nr = (?)");
-    $stmt->bind_param("s", $organisatienr);
-    // set parameters and execute
-    $organisatienr = $decodeJSON->{'organisatie_ID'};
-
-    $stmt->execute();
-
-    $stmt->close();
-}
-
-if ($decodeJSON->{'persoon_ID'} != null) {
-    DeleteFROMpersonen($con);
-} elseif ($decodeJSON->{'organisatie_ID'} != null) {
-    DeleteFROMorganisaties($con);
-} else {
-    
-}
-DeleteFROMledenregister($con);
+echo '{}';

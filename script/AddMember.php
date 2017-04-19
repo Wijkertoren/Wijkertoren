@@ -10,6 +10,9 @@ foreach ($_POST as $key => $value) {
     //encodes the values given in the input field and puts them in JSON format.
     $encodeFormJSON = json_encode($formValues);
 }
+
+var_dump($encodeFormJSON);
+
 $decodeJSON = json_decode($encodeFormJSON);
 
 //function for inserting data into the database "personen"
@@ -65,8 +68,8 @@ function InsertINTOorganisatie($con) {
 function InsertINTOledenregister($con, $lastIDPersoon, $lastIDOrganisatie) {
     global $decodeJSON;
     // prepare and bind
-    $stmt = $con->prepare("INSERT INTO ledenregister (Persoon_nr, Organisatie_nr, Email, Extra_email, Telefoon, Mobiel, Adres, Woonplaats, Postcode, Extra_info) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    $stmt->bind_param("iissssssss", $persoonsnr, $organisatienr, $email, $extraEmail, $telefoon, $mobiel, $adres, $woonplaats, $postcode, $extrainfo);
+    $stmt = $con->prepare("INSERT INTO ledenregister (Persoon_nr, Organisatie_nr, Email, Extra_email, Telefoon, Mobiel, Adres, Woonplaats, Postcode, Extra_info, Eigenschappen) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    $stmt->bind_param("iisssssssss", $persoonsnr, $organisatienr, $email, $extraEmail, $telefoon, $mobiel, $adres, $woonplaats, $postcode, $extrainfo, $eigenschappen);
 
     // set parameters and execute
     $email = $decodeJSON->{'Email'};
@@ -76,16 +79,14 @@ function InsertINTOledenregister($con, $lastIDPersoon, $lastIDOrganisatie) {
     $adres = $decodeJSON->{'Adres'};
     $woonplaats = $decodeJSON->{'Woonplaats'};
     $postcode = $decodeJSON->{'Postcode'};
-    $extrainfo = $decodeJSON->{'ExtraInfo'};
+    $extrainfo = $decodeJSON->{'ZoekTerm'};
+    $eigenschappen = $decodeJSON->{'Eigenschappen'};
     $persoonsnr = $lastIDPersoon;
     $organisatienr = $lastIDOrganisatie;
-
-    var_dump($lastIDPersoon);
 
     $stmt->execute();
 
     $lastIDLid = $stmt->insert_id;
-
     $stmt->close();
     return $lastIDLid;
 }
@@ -97,7 +98,7 @@ function InsertINTOdonaties($con, $lastIDLid) {
 
 
     $stmt = $con->prepare("INSERT INTO donaties(Lid_nr, Donatie_kenmerk)VALUES(?,?)");
-    $stmt->bind_param("ss", $lastIDLid, $donatiekenmerk);
+    $stmt->bind_param("is", $lastIDLid, $donatiekenmerk);
 
 
     $stmt->execute();
