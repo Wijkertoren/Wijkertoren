@@ -21,12 +21,27 @@
                     <?php
                     if ($_SERVER['REQUEST_METHOD'] == "POST") {
                         $email_ontvanger = $_POST['naar_emailadres'];
+
                         $naam_verzender = 'Wijkertoren';
                         $email_verzender = 'jorrit.verh@gmail.com';
                         $onderwerp = $_POST['onderwerp'];
                         $bericht_verzender = $_POST['bericht_verzender'];
                         $headers = "From: " . $naam_verzender . " <" . $email_verzender . "> ";
                         $bericht =   $bericht_verzender ; //einde bericht
+
+
+                        $naam_verzender = 'Wijkertoren';
+                        $email_verzender = 'jorrit.verh@gmail.com';
+
+                        $onderwerp = $_POST['onderwerp'];
+                        $bericht_verzender = $_POST['bericht_verzender'];
+
+
+                        $headers = "From: " . $naam_verzender . " <" . $email_verzender . "> ";
+
+                        $bericht =   $bericht_verzender ; //einde bericht
+
+
                         mail($email_ontvanger, $onderwerp, $bericht, $headers);
                     }
                     ?>
@@ -45,3 +60,4 @@
     <!-- /.modal-dialog -->
 </div>
 <!-- /.modal -->
+

@@ -8,4 +8,23 @@ foreach ($_GET as $key => $value) {
     $encodeFormJSON = json_encode($formValues);
 }
 $decodeJSON = json_decode($encodeFormJSON);
+
 $lidID = $decodeJSON->{"lid_ID"};
+=======
+
+$lidID = $decodeJSON->{"lid_ID"};
+
+
+var_dump($lidID);
+
+$querytest = "SELECT Persoon_nr, Organisatie_nr, Email, Extra_email, "
+    . "Telefoon, Mobiel, Adres, Woonplaats, Postcode, Extra_info "
+    . "FROM ledenregister "
+    . "WHERE Lid_nr = ". $lidID ."";
+
+if ($result = mysqi_query($con, $querytest)){
+    while ($lid = mysqli_fetch_array($result)){
+        echo $lid["Email"];
+        var_dump($lid);
+    }
+}
