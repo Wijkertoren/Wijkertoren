@@ -70,7 +70,7 @@ include 'modals/show.php';
             <h1>LedenRegister 2.0</h1>
         </div>-->
 
-        <div class="panel-body">
+        <div class="panel-body boxshadow">
             <div class="row">
                 <table id="example" class="display compact" cellspacing="10" width="100%">
                     <thead>
